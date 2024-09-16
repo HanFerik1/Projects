@@ -1,1 +1,28 @@
-
+Line 1 to 2: Importing Classes
+Line 4: Creating our Palindrama Class
+Line 5: Creating our main method
+Line 7 to 9: Creating a new constructor in Scanner Class, the one we imported, and taking input from the user for the palindrama
+Line 11 to 16: Declaring the variables that we are going to use, and creating a list to keep the palindromes if there are more than 1
+Line 19: Creating a while loop until the length of our input will be smaller than the counter we use from 0 to the last index, this is done to make sure that our code will stop after looking over all of the characters in the input
+Line 20: Resetting the counter that starts from the last index to the beginning, this is done to make sure that after increasing counter from the front by one, it will again check for every single possiblities it can have again
+Line 21: Creating a while loop where the counter from the last index is smaller than the whole length of the sentence, this is doen to make sure that our counter from the last input will stop after passing the first index
+Line 23: We are declaring a starting index which is zero
+Line 24: We are declaring a reversed starting index which will start from the back of the sentence and we are subtracting the last index with -1 so that it doesn't cause an error called IndexOutOfBoundsException because indexs start from zero but not 1 so we need to delete 1
+Line 25: We are creating an if statement to check the value of starting index is smaller or equal to ending index since it must be be smaller than it if not than it will pass the valid substring range
+Line 26: We are again creating an if statement by using the method charAt to check whether our first index and the last index is equal and if its equal
+Line 28 to 29: After making sure that our characters are the same, it will make our counter that we use for to check the second character from back and front of the sentence to check whether they are same or not and the reason that we didnt use the same counter is that if we dont get the same number, we would just need to decrease the counter with the times that we used and if the time we more than 1 like 5 or 10 or 100, it would be just hard to find that exact number to subtract it that why we create a new counter to check where we can just easily equal our first counter with these, if the all characters are the same afterwards
+Line 30 to 31: We are creating a while loop where our second counters doesn't pass their boundaries and the characters are the same
+Line 32 to 33: We will increase our counters to check whether it again the same at the next characters of the next indexs
+Line 35: We are creating an if statement to check whether our front counter passed back counter and if its true, this shows that the whole sentence between those ranges is the same
+Line 36: If the condition above is correct then we will just equal our palindrome from the beginning of the index and the ending index + 1, it is +1 because else it wont be in the boundaries of the sentence since substring method doesn't take the last word
+Line 37: to 38: We are again creating an if statement to check if there is the same palindrome that we already got in our list and if there isn't, we will just add our palindrome into our list
+Line 43: We will increase our back counter with 1 so that it will go the next letter in the last index while the front counter is remaining the same, if there are no equal matches
+Line 45: We will increase our front counter with 1 so that it it will go the next letter in the first index while the back counter is resets to 0 , if there are no equal matches and we reset our back counter to zero because before we increase our first index, the back counter was already at the index 0 so we need to reset it go tart again from the last index so that it can again check for more palindrome while staying in the range of boundaries since if we didn't reset it, it would be out of the range
+Line 49 to 69: We are making a bubble sort
+Line 49: We are creating an if statement to check if there are more than 1 elements in the palindrama list and if so we need to sort them from small to large
+Line 51: We are initializing a boolean called swapped to make sure that if our latters have swapped it will just take the largest one from our list
+Line 52: We are creating a do condition which will make the for loop work until all of the letters are swapped
+Line 53: At the beginning our swapped method will be false and after all of the words are swapped, it will change to true
+Line 54: We are creating a for loop which will go until the whole elements in the list are sorted
+Line 55 to 59: We will first check the length of our first index and the second index and if its smaller than the second index, it will first copy our first index in another variable and then it will change the positions of our variable making the bigger number at the front and it will then increase the index check the next indexs
+Line 62 to 72: If the swapped condition is true then it will display the longest palindrome in the list of palindrome by taking the last index of it and if there is just one element in the list, then it will just take the first index and else, it just means that there are no indexs, so it will just print that there are no palindromes in our list
