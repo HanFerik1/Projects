@@ -1,1 +1,74 @@
+import java.util.Scanner;
+import java.util.ArrayList;
 
+public class Palindrama {
+    public static void main(String[] args) {
+        Scanner inputPalindroma = new Scanner(System.in);
+        System.out.println("Enter your sentence:");
+        String outputPalindroma = inputPalindroma.nextLine();
+        System.out.println("Your sentence is: " + outputPalindroma);
+
+        int counterBack = 0;
+        int counterFront = 0;
+        int counterBack1 = 0;
+        int counterFront1 = 0;
+        String copyOfIndex;
+        ArrayList<String> palindramaList = new ArrayList<>();
+        
+        // Loop through the sentence
+        while (counterFront < outputPalindroma.length()) {
+            counterBack = 0; // Reset counterBack for each new start position
+            while (counterBack <= outputPalindroma.length() - counterFront - 1) {
+                // Ensure indices are valid
+                int startIndex = counterFront;
+                int endIndex = outputPalindroma.length() - counterBack - 1;
+                if (startIndex <= endIndex) { // Ensure valid substring range
+                    if (outputPalindroma.charAt(startIndex) == outputPalindroma.charAt(endIndex)) {
+                        // Check if substring is a palindrome
+                        counterFront1 = startIndex;
+                        counterBack1 = endIndex;
+                        while (counterFront1 <= counterBack1 &&
+                               outputPalindroma.charAt(counterFront1) == outputPalindroma.charAt(counterBack1)) {
+                            counterFront1++;
+                            counterBack1--;
+                        }
+                        if (counterFront1 > counterBack1) {
+                            String palindrome = outputPalindroma.substring(startIndex, endIndex + 1);
+                            if (!palindramaList.contains(palindrome)) {
+                                palindramaList.add(palindrome);
+                            }
+                        }
+                    }
+                }
+                counterBack++;
+            }
+            counterFront++;
+        }
+
+        // Original sorting method
+        if (palindramaList.size() > 1) {
+            // Bubble sort for sorting based on length
+            boolean swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < palindramaList.size() - 1; i++) {
+                    if (palindramaList.get(i).length() < palindramaList.get(i + 1).length()) {
+                        copyOfIndex = palindramaList.get(i);
+                        palindramaList.set(i, palindramaList.get(i + 1));
+                        palindramaList.set(i + 1, copyOfIndex);
+                        swapped = true;
+                    }
+                }
+            } while (swapped);
+
+            // Display the longest palindrome
+            System.out.println("The longest palindrome in the list is: " + palindramaList.get(0));
+        } else if (palindramaList.size() == 1) {
+            System.out.println("The longest palindrome is: " + palindramaList.get(0));
+        } else {
+            System.out.println("There is no palindrome in your sentence.");
+        }
+
+        inputPalindroma.close(); // Close the scanner to avoid resource leak
+    }
+}
