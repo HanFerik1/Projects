@@ -1,0 +1,16 @@
+public class CarDemo {
+    private String modelDemo;
+    private int horsepDemo;
+    private int yearDemo;
+
+    public CarDemo(String model, int horse, int year) {
+        modelDemo = model;
+        horsepDemo = horse;
+        yearDemo = year;
+    }
+    
+    public static void main(String[] args) {
+        CarDemo supra = new CarDemo("model", 11, 11);
+        System.out.println("Model: " + supra.modelDemo + ", Horsepower: " + supra.horsepDemo + ", Year: " + supra.yearDemo);
+    }
+}
