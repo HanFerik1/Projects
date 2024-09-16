@@ -12,6 +12,7 @@ public class Palindrama {
         int counterFront = 0;
         int counterBack1 = 0;
         int counterFront1 = 0;
+        int lastIndex = 0;
         String copyOfIndex;
         ArrayList<String> palindramaList = new ArrayList<>();
         
@@ -52,7 +53,8 @@ public class Palindrama {
             do {
                 swapped = false;
                 for (int i = 0; i < palindramaList.size() - 1; i++) {
-                    if (palindramaList.get(i).length() < palindramaList.get(i + 1).length()) {
+                    lastIndex = palindramaList.size();
+                    if (palindramaList.get(i).length() > palindramaList.get(i + 1).length()) {
                         copyOfIndex = palindramaList.get(i);
                         palindramaList.set(i, palindramaList.get(i + 1));
                         palindramaList.set(i + 1, copyOfIndex);
@@ -62,7 +64,7 @@ public class Palindrama {
             } while (swapped);
 
             // Display the longest palindrome
-            System.out.println("The longest palindrome in the list is: " + palindramaList.get(0));
+            System.out.println("The longest palindrome in the list is: " + palindramaList.get(lastIndex));
         } else if (palindramaList.size() == 1) {
             System.out.println("The longest palindrome is: " + palindramaList.get(0));
         } else {
