@@ -1,0 +1,58 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Palindrome {
+    public static void main(String[] args) {
+        Scanner loopNumberInput = new Scanner(System.in);
+        System.out.println("How many numbers are you going to write:");
+        int numberTimes = loopNumberInput.nextInt();
+        ArrayList<Integer> numberPalListNormal = new ArrayList<>();
+        ArrayList<Integer> numberPalListReversed = new ArrayList<>();
+
+        for (int i = numberTimes; i > 0; i--) {
+            System.out.println("Write your number:");
+            String userInputStr = loopNumberInput.next(); 
+            
+            if (userInputStr.length() >= 3) {
+                int userInput = Integer.parseInt(userInputStr); 
+                int reverse = 0;
+
+                numberPalListNormal.add(userInput);
+                
+                int copyInput = userInput;
+                while (copyInput != 0) {
+                    int digit = copyInput % 10;
+                    reverse = reverse * 10 + digit;
+                    copyInput = copyInput / 10;
+                }
+                numberPalListReversed.add(reverse);
+                
+                int sum = userInput + reverse;
+                int reverseOfSum = reverseNumber(sum);
+                int sumTwice = sum + reverseOfSum;
+                int reverseOfSumTwice = reverseNumber(sumTwice);
+                int finalSum = sumTwice + reverseOfSumTwice;
+                
+                if (finalSum == reverseNumber(finalSum)) {
+                    System.out.println("True");
+                } else {
+                    System.out.println("False");
+                }
+            } else {
+                System.out.println("Your number should be at least 3 characters.");
+                i++;
+            }
+        }
+        loopNumberInput.close();
+    }
+
+    public static int reverseNumber(int number) {
+        int reverse = 0;
+        while (number != 0) {
+            int digit = number % 10;
+            reverse = reverse * 10 + digit;
+            number = number / 10;
+        }
+        return reverse;
+    }
+}
