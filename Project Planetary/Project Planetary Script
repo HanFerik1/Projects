@@ -1,0 +1,83 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Planetary {
+    private int numberloop;
+    private int counterLoop;
+    private int firstPlanet;
+    private int secondPlanet;
+    
+    private ArrayList<String> namePlanetList = new ArrayList<>();
+    private ArrayList<Double> distanceFromSunList = new ArrayList<>();
+    private ArrayList<Integer> diameterPlanetList = new ArrayList<>();
+    private ArrayList<Integer> numMoonsAroundList = new ArrayList<>();
+    
+    public Planetary(String name, double distance, int diameter, int numMoons) {
+    }
+
+    public static void main(String[] args) {
+        Planetary planetary = new Planetary("", 0, 0, 0);
+        Scanner numberloopInput = new Scanner(System.in);
+        System.out.println("Number of inputs you are going to enter:");
+        planetary.numberloop = numberloopInput.nextInt();
+
+        for (int i = 0; i < planetary.numberloop; i++) {
+            Scanner planetNameInput = new Scanner(System.in);
+            System.out.println("Planet Name:");
+            String namePlanet = planetNameInput.nextLine();
+            planetary.namePlanetList.add(namePlanet);
+
+            Scanner distanceFromSunInput = new Scanner(System.in);
+            System.out.println("Distance from Sun:");
+            double distanceFromSun = distanceFromSunInput.nextDouble();
+            planetary.distanceFromSunList.add(distanceFromSun);
+
+            Scanner diameterPlanetInput = new Scanner(System.in);
+            System.out.println("Planet Diameter:");
+            int diameterPlanet = diameterPlanetInput.nextInt();
+            planetary.diameterPlanetList.add(diameterPlanet);
+
+            Scanner numMoonsAroundInput = new Scanner(System.in);
+            System.out.println("Number of Moons:");
+            int numMoonsAround = numMoonsAroundInput.nextInt();
+            planetary.numMoonsAroundList.add(numMoonsAround);
+        }
+
+        planetary.PlanetaryInfo();
+        
+        Scanner travelTimeInput = new Scanner(System.in);
+        System.out.println("Do you want to check out travelling time between two planets? (yes/no)");
+        String istravelTime = travelTimeInput.nextLine();
+        
+        if (istravelTime.equals("yes")) {
+            Scanner firstPlanetInput = new Scanner(System.in);
+            System.out.println("Enter the first planet as a number: ");
+            planetary.firstPlanet = firstPlanetInput.nextInt();
+
+            Scanner secondPlanetInput = new Scanner(System.in);
+            System.out.println("Enter the second planet as a number: ");
+            planetary.secondPlanet = secondPlanetInput.nextInt();
+
+            double travelTime = planetary.TravelTime();
+            System.out.println("The travel time between the two planets is: " + travelTime + " hours");
+        }
+        travelTimeInput.close();
+        numberloopInput.close();
+    }
+
+    public double TravelTime() {
+        double travelTime = Math.abs(distanceFromSunList.get(firstPlanet) - distanceFromSunList.get(secondPlanet)) / 50000;
+        return travelTime;
+    }
+
+    public void PlanetaryInfo() {
+        while (counterLoop < numberloop) {
+            System.out.println("Information of Planet " + counterLoop);
+            System.out.println("Planet: " + namePlanetList.get(counterLoop));
+            System.out.println("Distance from the Sun: " + distanceFromSunList.get(counterLoop));
+            System.out.println("Diameter: " + diameterPlanetList.get(counterLoop));
+            System.out.println("Number of Moons: " + numMoonsAroundList.get(counterLoop));
+            counterLoop++;
+        }
+    }
+}
