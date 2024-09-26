@@ -1,0 +1,165 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Underwater {
+    private ArrayList<Integer> oceansList = new ArrayList<>();
+    private String name;
+    private int depth;
+    private double temperature;
+    private String species;
+
+    public void ocean(String name, int depth, double temperature, String species){
+        this.name = name;
+        this.depth = depth;
+        this.temperature = temperature;
+        this.species = species;
+        oceansList.add(1);
+        oceansList.add(2);
+        oceansList.add(3);
+    }
+
+    public void oceanInfo(){
+        System.out.println("Zone Name: " + name);
+        System.out.println("Depth: " + depth + " meters");
+        System.out.println("Average Temperature: " + temperature + " °C");
+        System.out.println("Main Marine Species: " + species);
+    }
+
+    public void navigate(Underwater sunlitZone, Underwater twilightZone, Underwater midnightZone) {
+        int navigationNumber = (int)((Math.random() * 3) + 1);
+        Underwater selectedZone;
+        if (navigationNumber == 1) {
+            selectedZone = sunlitZone;
+            System.out.println("Navigating to Sunlit Zone");
+            selectedZone.oceanInfo();
+        } 
+        else if (navigationNumber == 2) {
+            selectedZone = twilightZone;
+            System.out.println("Navigating to Twilight Zone");
+            selectedZone.oceanInfo();
+        } 
+        else {
+            selectedZone = midnightZone;
+            System.out.println("Navigating to Midnight Zone");
+            selectedZone.oceanInfo();
+        }
+
+        if (selectedZone == sunlitZone) {
+            System.out.println("Be careful! Sunlit Zone might be dangerous!");
+        } else if (selectedZone == twilightZone) {
+            System.out.println("Be careful! Twilight Zone is dangerous!");
+        } else if (selectedZone == midnightZone) {
+            System.out.println("Be careful! Midnight Zone is very dangerous!");
+        }
+    }
+
+    public static void main(String[] args) {
+        boolean isOcean = true;
+        int treasurePoint = 0;
+        int healthPoint = 3;
+        ArrayList<String> treasureList = new ArrayList<>();
+        treasureList.add("You found a Treasure Chest. + 1 Treasure Collected");
+        treasureList.add("You found a Black Pearl. + 1 Treasure Collected");
+        treasureList.add("You found a Golden Watch. + 1 Treasure Collected");
+        treasureList.add("You found a Golden Bracelet. + 1 Treasure Collected");
+        treasureList.add("You found a Diamond Ring. + 1 Treasure Collected");
+        
+        ArrayList<String> hazardList = new ArrayList<>();
+        hazardList.add("A fish gulp gulp your hand. - 1 Health Point");
+        hazardList.add("A jellyfish paralyzed you so you lost the control of your submarine. - 1 Health Point");
+        hazardList.add("A giant squid inked you windshield so you dumped into a fish flood. - 1 Health Point");
+        hazardList.add("An angler fish obscured your eyesight so you hit a massive coral reef. - 1 Health Point");
+        hazardList.add("You killed a black squid that was blessed so now your blood is mixed with its ink. - 1 Health Point");
+
+        ArrayList<Integer> userScoreList = new ArrayList<>();
+
+        Underwater sunlitZone = new Underwater();
+        sunlitZone.ocean("Sunlit Zone", 200, 24.0, "Coral Reefs and Fish");
+
+        Underwater twilightZone = new Underwater();
+        twilightZone.ocean("Twilight Zone", 1000, 10.0, "Jellyfish and Squid");
+
+        Underwater midnightZone = new Underwater();
+        midnightZone.ocean("Midnight Zone", 4000, 4, "Giant Squid and Anglerfish");
+
+        int counterScore = 0;
+
+        boolean isTryAgain = true;
+
+        Scanner inputScanner = new Scanner(System.in);
+
+        while(isTryAgain) {  
+            System.out.println("Do you want to dive into the ocean (yes/no):");
+            String firstOcean = inputScanner.nextLine(); 
+
+            if (firstOcean.equalsIgnoreCase("yes")) {
+                sunlitZone.navigate(sunlitZone, twilightZone, midnightZone);
+            } 
+            else {
+                System.out.println("Dive aborted.");
+                isOcean = false;
+                isTryAgain = false;
+            }
+
+            while (isOcean) {
+                while (healthPoint > 0 && treasurePoint < 5 ) {
+                    System.out.println("Do you want to navigate into a different ocean (yes/no):");
+                    String isNavigate = inputScanner.nextLine();
+                    
+                    if (isNavigate.equalsIgnoreCase("yes")) {
+                        sunlitZone.navigate(sunlitZone, twilightZone, midnightZone);
+                        System.out.println("Do you want to attempt to collect treasure (yes/no):");
+                        String isAttempt = inputScanner.nextLine();
+                        int treasureOrHealth = (int) ((Math.random() * 2) + 1);
+                        int pickListNumber = (int) (Math.random() * hazardList.size());
+                        if (isAttempt.equalsIgnoreCase("yes")) {
+                            if (treasureOrHealth == 1) {
+                                System.out.println(treasureList.get(pickListNumber));
+                                treasurePoint += 1;
+                                System.out.println("Your current treasure point is " + treasurePoint);
+                                System.out.println("Your current health point is " + healthPoint);
+                            } else {
+                                System.out.println(hazardList.get(pickListNumber));
+                                healthPoint = Math.max(0, healthPoint - 1);
+                                System.out.println("Your current treasure point is " + treasurePoint);
+                                System.out.println("Your current health point is " + healthPoint);
+                            }
+                        }
+                    } 
+                    else {
+                        System.out.println("Navigation aborted.");
+                        isOcean = false;
+                    }
+                }
+                if (healthPoint <= 0){
+                    System.out.println("You have died. Sorry!");
+                    System.out.println("Your score is " + healthPoint);
+                    userScoreList.add(healthPoint);
+                    counterScore++;
+
+                    System.out.println("Do you want to navigate into a different ocean (yes/no):");
+                    String tryAgain = inputScanner.nextLine();
+                    
+                    if (tryAgain.equalsIgnoreCase("yes")) {
+                        System.out.println("Your score is saved. You are starting again...");
+                        treasurePoint = 0;
+                        healthPoint = 3;                        
+                    }
+                    else {
+                        if (counterScore < userScoreList.size()) {
+                            System.out.println("Your latest score is " + userScoreList.get(counterScore - 1));
+                        }
+                        System.out.println("The game has been stopped!");
+                        isTryAgain = false;                            
+                    }
+                }
+                else if (treasurePoint >= 5) {
+                    System.out.println("You earned enough treasure so you went up!");
+                    isOcean = false;
+                    isTryAgain = false;
+                }
+            }
+        }
+        inputScanner.close();
+    }
+}
