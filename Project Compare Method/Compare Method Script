@@ -1,0 +1,46 @@
+public class compareMethod {
+    private String name;
+    private int population;
+
+    public compareMethod(String name, int population) {
+        this.name = name;
+        this.population = population;
+    }
+
+    public void compareToByName(String citynameone, String citynametwo, String citynamethree) {
+        int namecondone = citynameone.compareTo(citynametwo);
+        int namecondtwo = citynameone.compareTo(citynamethree);
+        int namecondthree = citynametwo.compareTo(citynamethree);
+
+        if (namecondone < 0 && namecondtwo < 0) {
+            System.out.println(citynameone + " is the first in alphabetic order");
+        } else if (namecondone > 0 && namecondtwo > 0) {
+            System.out.println(citynamethree + " is the first in alphabetic order");
+        } else if (namecondthree > 0 && namecondtwo < 0) {
+            System.out.println(citynametwo + " is the first in alphabetic order");
+        }
+    }
+
+    public void compareToByPopulation(int citypopone, int citypoptwo, int citypopthree) {
+        boolean cityone = citypopone > citypoptwo;
+        boolean citytwo = citypoptwo > citypopthree;
+        boolean citythree = citypopone > citypopthree;
+
+        if (cityone && citythree) {
+            System.out.println("The city with population " + citypopone + " is the highest in increasing order");
+        } else if (!citythree && citytwo) {
+            System.out.println("The city with population " + citypopthree + " is the highest in increasing order");
+        } else if (!citythree && cityone) {
+            System.out.println("The city with population " + citypoptwo + " is the highest in increasing order");
+        }
+    }
+    public static void main(String[] args) {
+        compareMethod city1 = new compareMethod("New York", 8500000);
+        compareMethod city2 = new compareMethod("Los Angeles", 4000000);
+        compareMethod city3 = new compareMethod("Chicago", 2700000);
+
+        city1.compareToByName(city1.name, city2.name, city3.name);
+
+        city1.compareToByPopulation(city1.population, city2.population, city3.population);
+    }
+}
