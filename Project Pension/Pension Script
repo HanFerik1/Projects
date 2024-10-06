@@ -1,7 +1,59 @@
-The Pension program is built to evaluate whether a pension amount will last over a set number of years, factoring in yearly deductions and a percentage increase. The process starts by collecting inputs from the user for each scenario, including the initial amount of the pension, the amount to deduct each year, the percentage increase applied to the remaining balance, and the number of years the pension needs to last. These values are stored in lists, allowing the program to manage multiple sets of data efficiently. For each data set, the user is prompted to input the corresponding values, which are then added to their respective lists for further processing.
+import java.util.ArrayList;
+import java.util.Scanner;
 
-Once all inputs are gathered, the program enters a loop to process each set of pension data. For each scenario, the program calculates how the pension evolves year by year. It begins by subtracting the annual deduction from the initial pension amount and then applies the percentage increase to the remaining amount. This percentage is compounded over the number of years the pension needs to last, adjusting the balance accordingly. The updated amount is calculated for each year in a nested loop that simulates the passage of time.
-
-After completing the yearly calculations for a given data set, the program checks whether the remaining balance is still positive. If the pension balance becomes negative at any point, the program outputs "False," indicating that the pension will not last for the full period. If the balance remains positive or zero, the program outputs "True," signifying that the pension will last for the specified number of years.
-
-This program showcases key Java concepts such as handling user input with Scanner, using ArrayList to store dynamic data, and leveraging loops to perform repeated calculations over multiple years. It also demonstrates how to apply mathematical operations to simulate real-world financial situations, adjusting the pension balance based on both fixed deductions and percentage increases. Conditional checks ensure the final result accurately reflects whether the pension amount will be sufficient for the required period.
+public class Pension {
+    public static void main(String[] args) {
+        ArrayList<Integer> initialAmountList = new ArrayList<>();
+        ArrayList<Integer> deductYearAmountList = new ArrayList<>();
+        ArrayList<Integer> percentageList = new ArrayList<>();
+        ArrayList<Integer> numYearList = new ArrayList<>();   
+        int counterWhile = 0; 
+        int newAmount;
+        double percentageLeftOver;
+        Scanner numberloopInput = new Scanner(System.in);
+        System.out.println("Number of inputs you are going to enter: :");
+        int numberloop = numberloopInput.nextInt();
+        for (int i = 0; i < numberloop; i++) {
+            Scanner initialAmountInput = new Scanner(System.in);
+            System.out.println("Initial Amount:");
+            int initialAmount = initialAmountInput.nextInt();
+            initialAmountList.add(initialAmount);
+            initialAmountInput.close(); 
+            
+            Scanner deductYearAmountInput = new Scanner(System.in);
+            System.out.println("First Year Deduction Amount:");
+            int deductYearAmount = deductYearAmountInput.nextInt();
+            deductYearAmountList.add(deductYearAmount);
+            deductYearAmountInput.close(); 
+            
+            Scanner percentageInput = new Scanner(System.in);
+            System.out.println("Percentage Rate:");
+            int percentage = percentageInput.nextInt();
+            percentageList.add(percentage);
+            percentageInput.close(); 
+            
+            Scanner numYearsInput = new Scanner(System.in);
+            System.out.println("Number Years:");
+            int numYears = numYearsInput.nextInt();
+            numYearList.add(numYears);
+            numYearsInput.close(); 
+        }
+        
+        while (counterWhile < initialAmountList.size()) {
+            double newnewAmount = 0;
+            for (int p = 0; p < numYearList.get(counterWhile); p++) {
+                newAmount = initialAmountList.get(counterWhile) - deductYearAmountList.get(counterWhile);
+                percentageLeftOver = Math.pow((1 + percentageList.get(counterWhile) / 100), numYearList.get(counterWhile));
+                newnewAmount = newAmount * percentageLeftOver;
+            }
+            if (newnewAmount < 0) {
+                System.out.println("False");
+            } else {
+                System.out.println("True");
+            }
+            counterWhile++;
+        }
+        
+        numberloopInput.close();
+    }   
+}
