@@ -1,0 +1,25 @@
+public class SmartDoorLock {
+    private boolean locked;
+    private int peopleInside;
+    private boolean comeIn;
+
+    public SmartDoorLock(boolean locked, int peopleInside) {
+        this.locked = locked;
+        this.peopleInside = peopleInside;
+    }
+
+    public boolean isSafeToEnter() {
+        boolean doorTrueFalse = this.locked;
+        int peopleInsideDoor = this.peopleInside;
+        if (doorTrueFalse == false && peopleInsideDoor < 5) {
+            comeIn = true;
+        } else if (doorTrueFalse == true || peopleInsideDoor >= 5) {
+            comeIn = false;
+        }
+        return comeIn;
+    }
+    public static void main(String[] args) {
+        SmartDoorLock door = new SmartDoorLock(false, 3);
+        System.out.println(door.isSafeToEnter());
+    }
+}
