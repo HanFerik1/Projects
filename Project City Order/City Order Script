@@ -1,0 +1,35 @@
+public class City {
+    private String citynameone;
+    private String citynametwo;
+
+    public City(String namecityone, String namecitytwo) {
+        this.citynameone = namecityone;
+        this.citynametwo = namecitytwo;
+    }
+
+    public String getCityOne() {
+        return citynameone;
+    }
+
+    public String getCityTwo() {
+        return citynametwo;
+    }
+
+    public void compareCities(String City1, String City2) {
+        citynameone = City1;
+        citynametwo = City2;
+
+        if (citynameone.equals(citynametwo)) {
+            System.out.println("City one and City two are the same");
+        } else if (citynameone.compareTo(citynametwo) < 0) {
+            System.out.println(citynametwo + " comes after " + citynameone + " alphabetically");
+        } else if (citynameone.compareTo(citynametwo) > 0) {
+            System.out.println(citynameone + " comes before " + citynametwo + " alphabetically");
+        }
+    }
+
+    public static void main(String[] args) {
+        City city = new City("New York", "Los Angeles");
+        city.compareCities(city.getCityOne(), city.getCityTwo());
+    }
+}
