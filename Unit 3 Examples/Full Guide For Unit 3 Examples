@@ -1,0 +1,51 @@
+1 - In IfStatementExamples class highlights two key pitfalls in using if statements:
+
+Pitfall #1: Unnecessary If-Else Nesting
+In this example, the nested if statements determine grades based on a score. Initially, each condition is embedded within another else block, creating a "pyramid" structure that's both cumbersome and hard to read. This is a common pitfall because each additional level of nesting increases cognitive load and chances for errors. The simplified solution with else if statements removes the unnecessary nesting by sequentially checking conditions. This prevents redundancy and makes it clear that each condition is exclusive.
+Tricky Part: Avoid deep nesting in if-else structures whenever possible. Java reads conditions in sequence, so you can keep statements flat and still get accurate results.
+
+Pitfall #2: Repeated Condition Checks
+In the example of going outside if it’s raining and you have an umbrella, if (isRaining == true) is an unnecessary check because isRaining is already a Boolean. Using == true or == false with Boolean variables is redundant and can even lead to confusion when reading the code. The solution checks both conditions with if (isRaining && hasUmbrella), making it clearer and more efficient.
+Tricky Part: Avoid comparing Boolean variables with == true or == false—this is redundant. Simply use the Boolean variable directly.
+
+2 - In BooleanOperatorsExample, we explore the use of logical operators (&&, ||, and !):
+
+AND (&&): Here, both conditions in if (age >= 18 && hasLicense) must be true for the code inside the block to execute, indicating that both age and a license are required to drive.
+Tricky Part: Remember that && is strict. If any condition fails, the entire statement becomes false. Use it only when all conditions must be met.
+
+OR (||): The if (age < 18 || !hasLicense) checks if either condition is true, meaning the person either isn’t old enough or doesn’t have a license. If either is true, they cannot drive.
+Tricky Part: || only needs one condition to be true. This can sometimes lead to unintended results if not carefully thought through, so ensure it’s appropriate for your logic.
+
+NOT (!): The if (!isWeekend) inverts the value of isWeekend, checking if it’s not the weekend.
+Tricky Part: Inversion is straightforward here, but when combined with other operators, ! can complicate expressions. Use parentheses to clarify complex expressions.
+
+Combining Operators: This final example combines all three operators, showing how conditions can be layered for complex logic checks.
+Tricky Part: Combined conditions require understanding of operator precedence. In Java, && binds more tightly than ||, so use parentheses to ensure expressions evaluate as expected.
+
+3 - The TruthTableExample illustrates how to display results of Boolean operations for all combinations of values for two variables, A and B. This is useful for understanding how &&, ||, and ! behave across all possible inputs.
+
+Tricky Part: When constructing a truth table, be careful to account for all combinations. This example is straightforward, but with more variables, manually covering each scenario is challenging. For larger tables, consider using loops and arrays to ensure you don’t miss any combinations.
+
+4 - In the ShortCircuitExample, we see how short-circuiting prevents unnecessary evaluation in && and || conditions:
+
+AND Short-Circuit (&&): In the line if (x < 5 && checkCondition()), Java doesn’t call checkCondition() because x < 5 is false. With &&, if the first condition fails, Java skips the second, saving processing time.
+Tricky Part: While this improves efficiency, remember that short-circuiting can skip function calls or side effects you might expect to run, so avoid placing essential logic in conditions that may be skipped.
+
+OR Short-Circuit (||): In if (x > 5 || checkCondition()), checkCondition() isn’t evaluated because x > 5 is true. For ||, if the first condition is true, Java skips the second.
+Tricky Part: Short-circuiting with || can similarly bypass code unexpectedly, so be cautious with functions in these conditions. If functions have side effects, use separate statements.
+
+5 - In ComparisonExample, we explore the difference between comparing primitives and objects:
+
+Comparing Primitives: if (a == b) compares values directly. Since a and b are both 5, this evaluates to true. Primitives always compare their actual values, making comparison straightforward.
+Tricky Part: Primitive comparisons are simple, but when switching between objects and primitives, remember that they behave differently.
+
+Comparing Objects: The line if (obj1 == obj2) returns false because it checks reference equality, not the actual value within each object. Since obj1 and obj2 refer to different memory locations, they aren’t considered equal by ==. Using obj1.equals(obj2) checks the values within, returning true since both hold 5.
+Tricky Part: == checks if two objects point to the same memory location, not their content. To check for value equality, always use .equals() with objects.
+
+6 - In DeMorgansLawExample, we see how De Morgan’s Laws transform Boolean expressions to simplify conditions, particularly when negating them:
+
+Example 1: !(A && B): Here, !(A && B) is equivalent to !A || !B. Both expressions yield the same result, demonstrating De Morgan’s Law. This conversion is useful because it simplifies the negation of combined conditions.
+Tricky Part: When negating complex expressions, remember that !(A && B) doesn’t equal !A && !B—that’s incorrect logic. De Morgan’s Laws are essential to keep negations accurate.
+
+Example 2: !(A || B): In this case, !(A || B) is equivalent to !A && !B. Both produce the same result, showing that De Morgan’s Law holds for OR conditions as well.
+Tricky Part: Be mindful of which operations you’re negating. Using De Morgan’s Law correctly is especially helpful when refactoring code, as it can reduce the need for nested negations and make the logic clearer.
