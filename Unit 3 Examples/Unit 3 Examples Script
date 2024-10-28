@@ -1,0 +1,200 @@
+// Pitfalls of If Statements:
+public class IfStatementExamples {
+
+    public static void main(String[] args) {
+        int score = 85;
+
+        // Pitfall #1: Unnecessary if-else statements
+        if (score >= 90) {
+            System.out.println("Grade: A");
+        } else {
+            if (score >= 80) {
+                System.out.println("Grade: B");
+            } else {
+                if (score >= 70) {
+                    System.out.println("Grade: C");
+                } else {
+                    System.out.println("Grade: F");
+                }
+            }
+        }
+
+        // Solution: Use else-if to simplify
+        if (score >= 90) {
+            System.out.println("Grade: A");
+        } else if (score >= 80) {
+            System.out.println("Grade: B");
+        } else if (score >= 70) {
+            System.out.println("Grade: C");
+        } else {
+            System.out.println("Grade: F");
+        }
+
+        // Pitfall #2: Repeated condition checks
+        boolean isRaining = true;
+        boolean hasUmbrella = true;
+
+        if (isRaining == true) {  // Avoid checking "== true"
+            if (hasUmbrella == true) {
+                System.out.println("You can go outside.");
+            }
+        }
+
+        // Solution: Simplify with direct conditions
+        if (isRaining && hasUmbrella) {
+            System.out.println("You can go outside.");
+        }
+    }
+}
+
+
+// Boolean Operators:
+public class BooleanOperatorsExample {
+
+    public static void main(String[] args) {
+        int age = 20;
+        boolean hasLicense = true;
+        boolean isWeekend = false;
+
+        // Example 1: Using AND (&&) operator
+        // Both conditions need to be true for this block to execute
+        if (age >= 18 && hasLicense) {
+            System.out.println("You can drive.");
+        } else {
+            System.out.println("You cannot drive.");
+        }
+
+        // Example 2: Using OR (||) operator
+        // Only one of these conditions needs to be true for this block to execute
+        if (age < 18 || !hasLicense) {
+            System.out.println("You are not allowed to drive.");
+        } else {
+            System.out.println("You are allowed to drive.");
+        }
+
+        // Example 3: Using NOT (!) operator
+        // This inverts the boolean value
+        if (!isWeekend) {
+            System.out.println("It's a weekday.");
+        } else {
+            System.out.println("It's the weekend.");
+        }
+
+        // Example 4: Combining operators
+        // Using &&, ||, and ! together for complex conditions
+        if ((age >= 18 && hasLicense) || (isWeekend && !hasLicense)) {
+            System.out.println("Special conditions met for driving or weekend.");
+        } else {
+            System.out.println("Regular conditions apply.");
+        }
+    }
+}
+
+// Truth Table:
+public class TruthTableExample {
+
+    public static void main(String[] args) {
+        boolean[] values = { true, false };
+
+        System.out.println("A\tB\tA && B\tA || B\t!A");
+        System.out.println("-----------------------------");
+
+        // Loop through all combinations of A and B
+        for (boolean A : values) {
+            for (boolean B : values) {
+                boolean andResult = A && B;
+                boolean orResult = A || B;
+                boolean notAResult = !A;
+
+                System.out.println(A + "\t" + B + "\t" + andResult + "\t" + orResult + "\t" + notAResult);
+            }
+        }
+    }
+}
+
+// Short Circuit Operations:
+public class ShortCircuitExample {
+
+    public static void main(String[] args) {
+        int x = 10;
+
+        // Example of short-circuit AND (&&)
+        // The second condition (x > 5) will not be evaluated since x < 5 is false
+        if (x < 5 && checkCondition()) {
+            System.out.println("This won't print, as short-circuit AND stops at x < 5.");
+        } else {
+            System.out.println("AND short-circuit: Second condition skipped.");
+        }
+
+        // Example of short-circuit OR (||)
+        // The second condition (x < 5) will not be evaluated since x > 5 is true
+        if (x > 5 || checkCondition()) {
+            System.out.println("OR short-circuit: Second condition skipped.");
+        } else {
+            System.out.println("This won't print, as short-circuit OR stops at x > 5.");
+        }
+    }
+
+    // Method to simulate a condition check with a print statement
+    public static boolean checkCondition() {
+        System.out.println("checkCondition() was called!");
+        return true;
+    }
+}
+
+// Comparing Primitives vs. Comparing Objects:
+public class ComparisonExample {
+
+    public static void main(String[] args) {
+        // Comparing primitives
+        int a = 5;
+        int b = 5;
+
+        if (a == b) {
+            System.out.println("Primitives are equal (a == b)");
+        } else {
+            System.out.println("Primitives are not equal (a != b)");
+        }
+
+        // Comparing objects
+        Integer obj1 = new Integer(5);
+        Integer obj2 = new Integer(5);
+
+        if (obj1 == obj2) {
+            System.out.println("Objects are equal (obj1 == obj2)");
+        } else {
+            System.out.println("Objects are not equal (obj1 != obj2)");
+        }
+
+        if (obj1.equals(obj2)) {
+            System.out.println("Objects are equal in value (obj1.equals(obj2))");
+        } else {
+            System.out.println("Objects are not equal in value (!obj1.equals(obj2))");
+        }
+    }
+}
+
+// De Morgan's Law:
+public class DeMorgansLawExample {
+
+    public static void main(String[] args) {
+        boolean A = true;
+        boolean B = false;
+
+        // Example 1: !(A && B) is equivalent to !A || !B
+        boolean result1 = !(A && B);
+        boolean result2 = !A || !B;
+
+        System.out.println("!(A && B) = " + result1);
+        System.out.println("!A || !B = " + result2);
+        System.out.println("Are they equal? " + (result1 == result2));  // should be true
+
+        // Example 2: !(A || B) is equivalent to !A && !B
+        boolean result3 = !(A || B);
+        boolean result4 = !A && !B;
+
+        System.out.println("\n!(A || B) = " + result3);
+        System.out.println("!A && !B = " + result4);
+        System.out.println("Are they equal? " + (result3 == result4));  // should be true
+    }
+}
