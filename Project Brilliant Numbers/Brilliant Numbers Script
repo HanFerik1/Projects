@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class BrilliantNumbers {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("How many numbers would you like to check? ");
+        int times = scanner.nextInt();
+
+        for (int i = 0; i < times; i++) {
+            System.out.print("Enter number: ");
+            long number = scanner.nextLong();
+            System.out.println(isBrilliant(number) ? "TRUE" : "FALSE");
+        }
+
+        scanner.close();
+    }
+
+    public static boolean isBrilliant(long number) {
+        int factorCount = 0;
+        long firstFactor = -1;
+
+        for (long i = 2; i * i <= number; i++) {
+            if (number % i == 0 && isPrime(i)) {
+                long pairedFactor = number / i;
+                if (isPrime(pairedFactor)) {
+                    if (factorCount == 0) {
+                        firstFactor = i;
+                        factorCount++;
+                    } else if (factorCount == 1 && digitLength(firstFactor) == digitLength(pairedFactor)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean isPrime(long num) {
+        if (num < 2) return false;
+        for (long i = 2; i * i <= num; i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int digitLength(long num) {
+        return String.valueOf(num).length();
+    }
+}
