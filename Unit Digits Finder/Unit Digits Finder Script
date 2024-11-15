@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class basamak {
+    private int basamaksayi;
+    private int basamaktoplami;
+    private String sayi2;
+    private int sayi;
+
+    public basamak(int anasayi) {
+        sayi = anasayi;
+    }
+
+    public void sayiInput() {
+        Scanner sayigir = new Scanner(System.in);
+        System.out.println("Sayi gir: ");
+        sayi = sayigir.nextInt();
+        sayigir.close();
+    }
+
+    public int basamakSayi() {
+        sayi2 = String.valueOf(sayi);
+        basamaksayi = sayi2.length();
+        basamaktoplami = 0;
+
+        for (int i = 0; i < basamaksayi; i++) {
+            int counter = Integer.parseInt(sayi2.substring(i, i + 1));
+            basamaktoplami += counter;
+            System.out.println((i + 1) + ". basamak: " + counter);
+        }
+        return basamaktoplami;
+    }
+
+    public static void main(String[] args) {
+        basamak b = new basamak(1234);
+        int toplam = b.basamakSayi();
+        System.out.println("Basamak Toplami: " + toplam);
+    }
+
+}
+
