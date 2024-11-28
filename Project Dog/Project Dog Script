@@ -42,11 +42,11 @@ public class Dog {
         }
     }
 
-    public void equalsAge() {
+    public boolean equalsAge() {
         if (age1 == age2) {
-            System.out.println("same age.");
+            return true;
         } else {
-            System.out.println("different ages.");
+            return false;
         }
     }
 }
