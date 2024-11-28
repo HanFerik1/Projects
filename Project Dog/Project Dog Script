@@ -59,6 +59,6 @@ public class Dogtester {
         Dog yeller = new Dog(7, true);  
         System.out.println(yeller.toString());  
 
-        fido.equalsAge();
+        System.out.print(fido.equalsAge());
     }
 }
