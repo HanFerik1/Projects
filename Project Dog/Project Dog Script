@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class Dog {
+    private int age1;
+    private int age2;
+
+    public Dog(int yas1) {
+        setAge1(yas1);
+    }
+
+    public Dog(int yas2, boolean isdogsecond) {
+        setAge2(yas2);
+    }
+
+    public void setAge1(int dogage1) {
+            age1 = dogage1;
+    }
+
+    public int getAge1() {
+        return age1;
+    }
+
+    public void setAge2(int dogage2) {
+            age2 = dogage2;
+        }
+
+    public int getAge2() {
+        return age2;
+    }
+
+    public String toString() {
+        Scanner whichdog = new Scanner(System.in);
+        System.out.println("Which dog age(1 or 2):");
+        int dogdog = whichdog.nextInt();
+        
+        if (dogdog == 1) {
+            return "Dog 1's age is " + getAge1();
+        } else if (dogdog == 2) {
+            return "Dog 2's age is " + getAge2();
+        } else {
+            return "Invalid dog choice";
+        }
+    }
+
+    public void equalsAge() {
+        if (age1 == age2) {
+            System.out.println("same age.");
+        } else {
+            System.out.println("different ages.");
+        }
+    }
+}
+
+public class Dogtester {
+    public static void main(String[] args) {
+        Dog fido = new Dog(5);
+        System.out.println(fido.toString());
+
+        Dog yeller = new Dog(7, true);  
+        System.out.println(yeller.toString());  
+
+        fido.equalsAge();
+    }
+}
