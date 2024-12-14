@@ -1,1 +1,87 @@
+public class Diamond {
+    public void half() {
+        for (int i = 0; i < 5; i++) {
+            for (int k = 0; k <= i; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
 
+    public void invertedHalf() {
+        for (int a = 5; a >= 1; a--) {
+            for (int b = 1; b <= a; b++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    public void fullDiamond() {
+        for (int c = 1; c <= 9; c += 2) {
+            for (int counterspace = 9; counterspace > c; counterspace -= 2) {
+                System.out.print(" ");
+            }
+            for (int d = 1; d <= c; d++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        for (int e = 7; e >= 1; e -= 2) {
+            for (int counterspace = 9; counterspace > e; counterspace -= 2) {
+                System.out.print(" ");
+            }
+            for (int f = 1; f <= e; f++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    public void fullandhalf() {
+        for (int g = 1; g <= 9; g += 2) {
+            for (int counterspace = 9; counterspace > g; counterspace -= 2) {
+                System.out.print(" ");
+            }
+            for (int h = 1; h <= g; h++) {
+                System.out.print("*");
+            }
+            System.out.print(" ");
+            for (int n = 1; n <= g / 2 + 1; n++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    public void fullLetter() {
+        String[] Han = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
+        for (int m = 1; m <= 9; m += 2) {
+            for (int counterspace = 9; counterspace > m; counterspace -= 2) {
+                System.out.print(" ");
+            }
+            for (int o = 0; o < m; o++) {
+                System.out.print(Han[o % Han.length]);
+            }
+            System.out.println();
+        }
+        for (int p = 7; p >= 1; p -= 2) {
+            for (int counterspace = 9; counterspace > p; counterspace -= 2) {
+                System.out.print(" ");
+            }
+            for (int r = 0; r < p; r++) {
+                System.out.print(Han[r % Han.length]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Diamond diamond = new Diamond();
+        diamond.half();
+        diamond.invertedHalf();
+        diamond.fullDiamond();
+        diamond.fullandhalf();
+        diamond.fullLetter();
+    }
+}
