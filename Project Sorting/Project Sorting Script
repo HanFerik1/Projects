@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class Sorting {
+    double biggest;
+    double smally;
+    double summy;
+    double[] Han;
+
+    public void InputArray(){
+        Scanner HowlongArrayInput = new Scanner(System.in);
+        System.out.println("How big list? ");
+        int HowlongArray = HowlongArrayInput.nextInt();
+        Han = new double[HowlongArray];
+
+        for (int g = 0; g < HowlongArray; g++){
+            Scanner NumberInput = new Scanner(System.in);
+            System.out.println("Enter Number? ");
+            double Number = NumberInput.nextDouble();
+            Han[g] = Number;
+        }
+    }
+    
+    public double BiggySort(){
+        for(int i = 0; i < Han.length; i++){
+            for(int k = 0; k < Han.length; k++){
+                if (Han[i] > Han[k]){
+                    biggest = Han[i];
+                }
+                else if (Han[i] == Han[k]){
+                    continue;
+                }
+                else if (Han[i] < Han[k]){
+                    break;
+                }
+            }
+        }
+        return biggest;
+    }
+
+    public double LillySort(){
+        for(int i = 0; i < Han.length; i++){
+            for(int k = 0; k < Han.length; k++){
+                if (Han[k] < Han[i]){
+                    smally = Han[k];
+                }
+                else if (Han[i] == Han[k]){
+                    continue;
+                }
+            }
+        }
+        return smally;
+    }
+
+    public double Sum(){
+        for(int i = 0; i < Han.length; i++){
+            summy += Han[i];
+        }
+        return summy;
+    }
+
+    public void BubbleSort(){
+        int n = Han.length;
+        for (int b = 0; b < n - 1; b++) {
+            for (int j = 0; j < n - b - 1; j++) {
+                if (Han[j] > Han[j + 1]) {
+                    double temp = Han[j];
+                    Han[j] = Han[j + 1];
+                    Han[j + 1] = temp;
+                    System.out.print("List: ");
+                    for (double num : Han) {
+                        System.out.print(num + " ");        
+                    }
+                    System.out.println();
+                }
+            }
+        }
+    }
+}
