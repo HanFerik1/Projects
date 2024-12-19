@@ -1,0 +1,120 @@
+import java.util.Scanner;
+
+public class NewSorting {
+
+    int maximum;
+    int minimum;
+    int sum;
+    int[] SortingList;
+
+    public void SortingInput(){
+        Scanner HowlongArrayInput = new Scanner(System.in);
+        System.out.println("Write the length of the list ? ");
+        int HowlongArray = HowlongArrayInput.nextInt();
+        SortingList = new int[HowlongArray];
+        int Number = 0;
+
+        for (int i = 0; i < HowlongArray; i++){
+            Scanner NumberInput = new Scanner(System.in);
+            System.out.println("Enter Number: ");
+            if (NumberInput.hasNextInt()){
+                Number = NumberInput.nextInt();
+                SortingList[i] = Number;
+            }
+            else{
+                System.out.println("Invalid Input. Defaulting to 0");
+                SortingList[i] = 0;
+            }
+        }
+        printArray();
+    }
+
+    public void Maximum(){
+        maximum = SortingList[0];
+        for (int index : SortingList){
+            if (index > maximum){
+                maximum = index;
+            }
+        }
+    System.out.println("Maximum Value: " + maximum);
+    }
+
+    public void Minimum(){
+        minimum = SortingList[0];
+        for (int index : SortingList){
+                if (index < minimum){
+                    minimum = index;
+                }
+            }
+        System.out.println("Minimum Value: " + minimum);
+    }
+
+    public void TotalSum(){
+        int Total = 0;
+        for (int index : SortingList){
+            Total += index;
+        }
+        System.out.println("Total " + Total);
+    }
+
+    public void AverageArray(){
+        double Total = 0;
+        int Counter = 0;
+        for (int index : SortingList){
+            Total += index;
+            Counter++;
+        }
+        System.out.println("Average " + (Total/Counter));
+    }
+
+    public void bubbleSort() {
+        System.out.println("Starting Bubble Sort...");
+        System.out.println("Bubble Sort steps: ");
+        for (int i = 0; i < SortingList.length - 1; i++) {
+            boolean swapped = false;
+            for (int j = 0; j < SortingList.length - i - 1; j++) {
+                if (SortingList[j] > SortingList[j + 1]) {
+                    // Swap elements
+                    int temp = SortingList[j];
+                    SortingList[j] = SortingList[j + 1];
+                    SortingList[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            System.out.print("Step " + (i + 1) + ": ");
+            printArray();
+            if (!swapped){
+                break;
+            }
+        }
+    }
+
+    public void printArray() {
+        for (int num : SortingList) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
+
+
+public class NewSortingTester {
+    public static void main(String[] args) {
+        NewSorting program = new NewSorting();
+
+        program.SortingInput();
+
+        System.out.print("Entered Array: ");
+        program.printArray();
+
+        program.Maximum();
+        program.Minimum();
+        program.TotalSum();
+        program.AverageArray();
+
+        program.bubbleSort();
+
+        System.out.print("Sorted Array: ");
+        program.printArray();
+    }
+}
