@@ -1,1 +1,294 @@
+import java.util.*;
 
+public class ArrayCodeProjectTwo {
+    
+    // 1. Sum of Elements
+    public static int sumOfElements(int[] arr) {
+        int sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+        return sum;
+    }
+    
+    // 2. Maximum and Minimum Finder
+    public static void findMaxMin(int[] arr) {
+        int max = arr[0], min = arr[0];
+        for (int num : arr) {
+            if (num > max) max = num;
+            if (num < min) min = num;
+        }
+        System.out.println("Max: " + max + ", Min: " + min);
+    }
+    
+    // 3. Count Positive, Negative, and Zero Elements
+    public static void countNumbers(int[] arr) {
+        int pos = 0, neg = 0, zero = 0;
+        for (int num : arr) {
+            if (num > 0) pos++;
+            else if (num < 0) neg++;
+            else zero++;
+        }
+        System.out.println("Positive: " + pos + ", Negative: " + neg + ", Zero: " + zero);
+    }
+    
+    // 4. Reverse the Array
+    public static void reverseArray(int[] arr) {
+        int left = 0, right = arr.length - 1;
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+        System.out.println("Reversed Array: " + Arrays.toString(arr));
+    }
+    
+    // 5. Find the Second Largest Element
+    public static int secondLargest(int[] arr) {
+        int first = Integer.MIN_VALUE, second = Integer.MIN_VALUE;
+        for (int num : arr) {
+            if (num > first) {
+                second = first;
+                first = num;
+            } else if (num > second && num != first) {
+                second = num;
+            }
+        }
+        return second;
+    }
+    
+    // 6. Check if an Array is Sorted
+    public static boolean isSorted(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[i - 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    // 7. Frequency of Each Element
+    public static void elementFrequency(int[] arr) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int num : arr) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            System.out.println(entry.getKey() + " appears " + entry.getValue() + " times.");
+        }
+    }
+    
+    // 8. Remove Duplicates
+    public static int[] removeDuplicates(int[] arr) {
+        Set<Integer> uniqueElements = new LinkedHashSet<>();
+        for (int num : arr) {
+            uniqueElements.add(num);
+        }
+        int[] result = new int[uniqueElements.size()];
+        int index = 0;
+        for (int num : uniqueElements) {
+            result[index++] = num;
+        }
+        return result;
+    }
+    
+    // 9. Array Rotation
+    public static int[] rotateArray(int[] arr, int positions) {
+        int n = arr.length;
+        int[] rotated = new int[n];
+        for (int i = 0; i < n; i++) {
+            rotated[i] = arr[(i + positions) % n];
+        }
+        return rotated;
+    }
+    
+    // 10. Compare Two Arrays
+    public static boolean compareArrays(int[] arr1, int[] arr2) {
+        return Arrays.equals(arr1, arr2);
+    }
+    
+    // 11. Find Pairs with a Given Sum
+    public static void findPairsWithSum(int[] arr, int target) {
+        Set<Integer> seen = new HashSet<>();
+        for (int num : arr) {
+            int complement = target - num;
+            if (seen.contains(complement)) {
+                System.out.println("(" + complement + ", " + num + ")");
+            }
+            seen.add(num);
+        }
+    }
+    
+    // 12. Find the Mode
+    public static int findMode(int[] arr) {
+        Map<Integer, Integer> freq = new HashMap<>();
+        int maxFreq = 0, mode = arr[0];
+        for (int num : arr) {
+            freq.put(num, freq.getOrDefault(num, 0) + 1);
+            if (freq.get(num) > maxFreq) {
+                maxFreq = freq.get(num);
+                mode = num;
+            }
+        }
+        return mode;
+    }
+    
+    // 13. Find Missing Numbers in a Sequence
+    public static void findMissingNumbers(int[] arr) {
+        Arrays.sort(arr);
+        for (int i = arr[0]; i < arr[arr.length - 1]; i++) {
+            if (Arrays.binarySearch(arr, i) < 0) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+    
+    // 14. Find the Median
+    public static double findMedian(int[] arr) {
+        Arrays.sort(arr);
+        int n = arr.length;
+        if (n % 2 == 0) {
+            return (arr[n / 2 - 1] + arr[n / 2]) / 2.0;
+        } else {
+            return arr[n / 2];
+        }
+    }
+    
+    // 15. Find All Prime Numbers in an Array
+    public static void findPrimes(int[] arr) {
+        for (int num : arr) {
+            if (isPrime(num)) {
+                System.out.print(num + " ");
+            }
+        }
+        System.out.println();
+    }
+    
+    private static boolean isPrime(int num) {
+        if (num < 2) return false;
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+    
+    // 16. Longest Increasing Subsequence
+    public static int longestIncreasingSubsequence(int[] arr) {
+        int n = arr.length;
+        int[] lis = new int[n];
+        Arrays.fill(lis, 1);
+        
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (arr[i] > arr[j] && lis[i] < lis[j] + 1) {
+                    lis[i] = lis[j] + 1;
+                }
+            }
+        }
+        return Arrays.stream(lis).max().orElse(1);
+    }
+    
+    // 17. Rotate an Array in Place
+    public static void rotateArrayInPlace(int[] arr, int k) {
+        int n = arr.length;
+        k %= n;
+        reverse(arr, 0, n - 1);
+        reverse(arr, 0, k - 1);
+        reverse(arr, k, n - 1);
+    }
+    
+    private static void reverse(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+    
+    // 18. Find Pairs with a Given Difference
+    public static void findPairsWithDifference(int[] arr, int diff) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : arr) {
+            if (set.contains(num - diff)) {
+                System.out.println("(" + (num - diff) + ", " + num + ")");
+            }
+            if (set.contains(num + diff)) {
+                System.out.println("(" + num + ", " + (num + diff) + ")");
+            }
+            set.add(num);
+        }
+    }
+    
+    // 19. Implement Binary Search
+    public static boolean binarySearch(int[] arr, int target) {
+        int left = 0, right = arr.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == target) return true;
+            if (arr[mid] < target) left = mid + 1;
+            else right = mid - 1;
+        }
+        return false;
+    }
+    
+    // 20. Find the Intersection of Two Arrays
+    public static Set<Integer> findIntersection(int[] arr1, int[] arr2) {
+        Set<Integer> set1 = new HashSet<>();
+        for (int num : arr1) {
+            set1.add(num);
+        }
+        Set<Integer> intersection = new HashSet<>();
+        for (int num : arr2) {
+            if (set1.contains(num)) {
+                intersection.add(num);
+            }
+        }
+        return intersection;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        
+        System.out.println("Enter " + n + " elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        
+        System.out.print("Prime Numbers: ");
+        findPrimes(arr);
+        
+        System.out.println("Longest Increasing Subsequence Length: " + longestIncreasingSubsequence(arr));
+        
+        System.out.print("Enter positions to rotate: ");
+        int k = scanner.nextInt();
+        rotateArrayInPlace(arr, k);
+        System.out.println("Rotated Array: " + Arrays.toString(arr));
+        
+        System.out.print("Enter difference for pairs: ");
+        int diff = scanner.nextInt();
+        findPairsWithDifference(arr, diff);
+        
+        Arrays.sort(arr);
+        System.out.print("Enter target for binary search: ");
+        int target = scanner.nextInt();
+        System.out.println("Target Found: " + binarySearch(arr, target));
+        
+        System.out.print("Enter size of second array: ");
+        int m = scanner.nextInt();
+        int[] arr2 = new int[m];
+        System.out.println("Enter " + m + " elements:");
+        for (int i = 0; i < m; i++) {
+            arr2[i] = scanner.nextInt();
+        }
+        
+        System.out.println("Intersection: " + findIntersection(arr, arr2));
+        scanner.close();
+    }
+}
