@@ -12,3 +12,224 @@
 12-B
 13-B
 14-C
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class CheatSheet {
+
+    public static void main(String[] args) {
+        
+        // 1. Create and Initialize an ArrayList
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(10);
+        numbers.add(20);
+        numbers.add(30);
+        numbers.add(40);
+        numbers.add(50);
+        System.out.println("ArrayList: " + numbers);
+
+        // 2. Access and Update Elements
+        ArrayList<String> names = new ArrayList<>();
+        names.add("Alice");
+        names.add("Bob");
+        names.add("Charlie");
+        names.set(1, "David"); // Replace "Bob" with "David"
+        System.out.println("Updated ArrayList: " + names);
+
+        // 3. Remove an Element
+        ArrayList<Integer> integers = new ArrayList<>();
+        integers.add(10);
+        integers.add(20);
+        integers.add(30);
+        integers.add(40);
+        integers.add(50);
+        integers.remove(2); // Remove element at index 2
+        System.out.println("ArrayList after removal: " + integers);
+
+        // 4. Check if an Element Exists
+        ArrayList<String> checkNames = new ArrayList<>();
+        checkNames.add("Alice");
+        checkNames.add("Bob");
+        checkNames.add("Charlie");
+        if (checkNames.contains("Alice")) {
+            System.out.println("Found");
+        } else {
+            System.out.println("Not Found");
+        }
+
+        // 5. Find the Size of an ArrayList
+        ArrayList<String> sizeList = new ArrayList<>();
+        sizeList.add("A");
+        sizeList.add("B");
+        sizeList.add("C");
+        System.out.println("Size before: " + sizeList.size());
+        sizeList.add("D");
+        sizeList.add("E");
+        System.out.println("Size after: " + sizeList.size());
+
+        // 6. Print All Elements Using a For-Each Loop
+        ArrayList<Integer> forEachList = new ArrayList<>();
+        forEachList.add(1);
+        forEachList.add(2);
+        forEachList.add(3);
+        forEachList.add(4);
+        forEachList.add(5);
+        for (Integer num : forEachList) {
+            System.out.println(num);
+        }
+
+        // 7. Print All Elements Using a For Loop
+        ArrayList<String> forLoopList = new ArrayList<>();
+        forLoopList.add("Alice");
+        forLoopList.add("Bob");
+        forLoopList.add("Charlie");
+        for (int i = 0; i < forLoopList.size(); i++) {
+            System.out.println(forLoopList.get(i));
+        }
+
+        // 8. Reverse the Elements in an ArrayList
+        ArrayList<Integer> reverseList = new ArrayList<>();
+        reverseList.add(10);
+        reverseList.add(20);
+        reverseList.add(30);
+        reverseList.add(40);
+        Collections.reverse(reverseList);
+        System.out.println("Reversed ArrayList: " + reverseList);
+
+        // 9. Find the Sum of Elements in an ArrayList
+        ArrayList<Integer> sumList = new ArrayList<>();
+        sumList.add(1);
+        sumList.add(2);
+        sumList.add(3);
+        sumList.add(4);
+        sumList.add(5);
+        int sum = 0;
+        for (Integer num : sumList) {
+            sum += num;
+        }
+        System.out.println("Sum of elements: " + sum);
+
+        // 10. Count the Number of Even Numbers
+        ArrayList<Integer> evenList = new ArrayList<>();
+        evenList.add(1);
+        evenList.add(2);
+        evenList.add(3);
+        evenList.add(4);
+        evenList.add(5);
+        int evenCount = 0;
+        for (Integer num : evenList) {
+            if (num % 2 == 0) {
+                evenCount++;
+            }
+        }
+        System.out.println("Number of even numbers: " + evenCount);
+
+        // 11. Find the Maximum and Minimum Values
+        ArrayList<Integer> maxMinList = new ArrayList<>();
+        maxMinList.add(10);
+        maxMinList.add(20);
+        maxMinList.add(30);
+        maxMinList.add(40);
+        maxMinList.add(50);
+        int max = Collections.max(maxMinList);
+        int min = Collections.min(maxMinList);
+        System.out.println("Maximum value: " + max);
+        System.out.println("Minimum value: " + min);
+
+        // 12. Remove All Duplicates
+        ArrayList<Integer> duplicateList = new ArrayList<>();
+        duplicateList.add(1);
+        duplicateList.add(2);
+        duplicateList.add(2);
+        duplicateList.add(3);
+        duplicateList.add(3);
+        duplicateList.add(4);
+        ArrayList<Integer> uniqueList = new ArrayList<>();
+        for (Integer num : duplicateList) {
+            if (!uniqueList.contains(num)) {
+                uniqueList.add(num);
+            }
+        }
+        System.out.println("Unique elements: " + uniqueList);
+
+        // 13. Find the Index of an Element
+        ArrayList<String> indexList = new ArrayList<>();
+        indexList.add("Alice");
+        indexList.add("Bob");
+        indexList.add("Charlie");
+        int index = indexList.indexOf("Bob");
+        System.out.println("Index of 'Bob': " + index);
+
+        // 14. Insert an Element at a Specific Index
+        ArrayList<String> insertList = new ArrayList<>();
+        insertList.add("Alice");
+        insertList.add("Bob");
+        insertList.add("Charlie");
+        insertList.add(1, "David"); // Insert "David" at index 1
+        System.out.println("ArrayList after insertion: " + insertList);
+
+        // 15. Merge Two ArrayLists
+        ArrayList<Integer> list1 = new ArrayList<>();
+        list1.add(1);
+        list1.add(2);
+        ArrayList<Integer> list2 = new ArrayList<>();
+        list2.add(3);
+        list2.add(4);
+        list1.addAll(list2); // Merge list2 into list1
+        System.out.println("Merged ArrayList: " + list1);
+
+        // 16. Sort an ArrayList
+        ArrayList<Integer> sortList = new ArrayList<>();
+        sortList.add(30);
+        sortList.add(10);
+        sortList.add(20);
+        sortList.add(40);
+        Collections.sort(sortList);
+        System.out.println("Sorted ArrayList: " + sortList);
+
+        // 17. Remove All Elements Greater than a Given Value
+        ArrayList<Integer> removeGreaterList = new ArrayList<>();
+        removeGreaterList.add(10);
+        removeGreaterList.add(20);
+        removeGreaterList.add(30);
+        removeGreaterList.add(40);
+        removeGreaterList.add(50);
+        removeGreaterList.removeIf(num -> num > 50);
+        System.out.println("ArrayList after removal: " + removeGreaterList);
+
+        // 18. Find the Median of an ArrayList
+        ArrayList<Integer> medianList = new ArrayList<>();
+        medianList.add(10);
+        medianList.add(20);
+        medianList.add(30);
+        medianList.add(40);
+        medianList.add(50);
+        Collections.sort(medianList);
+        int median = medianList.get(medianList.size() / 2);
+        System.out.println("Median value: " + median);
+
+        // 19. Count Occurrences of Each Element
+        ArrayList<Integer> countList = new ArrayList<>();
+        countList.add(1);
+        countList.add(1);
+        countList.add(2);
+        countList.add(2);
+        countList.add(3);
+        countList.add(3);
+        countList.add(3);
+        for (Integer num : countList) {
+            int count = Collections.frequency(countList, num);
+            System.out.println("Element " + num + " occurs " + count + " times.");
+        }
+
+        // 20. Shuffle an ArrayList
+        ArrayList<Integer> shuffleList = new ArrayList<>();
+        shuffleList.add(10);
+        shuffleList.add(20);
+        shuffleList.add(30);
+        shuffleList.add(40);
+        Collections.shuffle(shuffleList);
+        System.out.println("Shuffled ArrayList: " + shuffleList);
+    }
+}
