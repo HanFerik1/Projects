@@ -1,1 +1,13 @@
+The `ArrayCodeProjectTwo` program includes various methods that manipulate and analyze arrays in Java. The code covers several common operations like summing array elements, finding the maximum and minimum values, counting positive, negative, and zero elements, and reversing the array. Each method is self-contained, performing a specific task, and the program employs loops and conditional statements to achieve the desired results.
 
+For example, the `sumOfElements` method calculates the sum of all integers in the array. It initializes a `sum` variable to zero and then iterates over the array, adding each number to the sum. The method then returns the total sum.
+
+The `findMaxMin` method finds both the maximum and minimum values in the array. It starts by assuming the first element is both the maximum and minimum. As it iterates over the array, it compares each element to the current maximum and minimum, updating them as needed.
+
+Similarly, the `countNumbers` method counts how many positive, negative, and zero elements exist in the array. It uses simple if-else statements to categorize each element.
+
+Other methods perform operations like reversing the array, finding the second-largest element, and checking if the array is sorted. For example, the `reverseArray` method uses a two-pointer technique, swapping elements from both ends of the array until the pointers meet in the middle.
+
+The program also includes functionality to handle duplicate elements using the `removeDuplicates` method, which uses a `LinkedHashSet` to ensure only unique elements are kept. Additionally, it includes methods like `rotateArrayInPlace`, which rotates the array by a specified number of positions, and `findPairsWithSum`, which finds pairs of numbers that add up to a given target.
+
+In the `main` method, user input is handled via a `Scanner` object. The user is prompted to enter an array, and then the program calls various methods on that array, such as finding prime numbers, the longest increasing subsequence, rotating the array, and performing binary search. The results are printed to the console after each operation, providing feedback to the user. The program concludes by finding the intersection of two arrays and displaying the common elements.
