@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+public class CeaserCipher {
+    private String input;
+    private String newinput = ""; 
+
+    public CeaserCipher() {
+        Scanner inputinput = new Scanner(System.in);
+        System.out.print("Enter Input? ");
+        input = inputinput.nextLine();
+        inputinput.close(); 
+    }
+
+    public String CeaserReturner() {
+        for (int i = input.length(); i > 0; i--) {
+            if (input.substring(i - 1, i).equalsIgnoreCase("a")) {
+                newinput += "d";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("b")) {
+                newinput += "e";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("c")) {
+                newinput += "f";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("d")) {
+                newinput += "g";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("e")) {
+                newinput += "h";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("f")) {
+                newinput += "i";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("g")) {
+                newinput += "j";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("h")) {
+                newinput += "k";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("i")) {
+                newinput += "l";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("j")) {
+                newinput += "m";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("k")) {
+                newinput += "n";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("l")) {
+                newinput += "o";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("m")) {
+                newinput += "p";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("n")) {
+                newinput += "q";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("o")) {
+                newinput += "r";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("p")) {
+                newinput += "s";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("q")) {
+                newinput += "t";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("r")) {
+                newinput += "u";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("s")) {
+                newinput += "v";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("t")) {
+                newinput += "w";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("u")) {
+                newinput += "x";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("v")) {
+                newinput += "y";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("w")) {
+                newinput += "z";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("x")) {
+                newinput += "a";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("y")) {
+                newinput += "b";
+            } else if (input.substring(i - 1, i).equalsIgnoreCase("z")) {
+                newinput += "c";
+            } else {
+                newinput += input.substring(i - 1, i);
+            }
+        }
+        return newinput;
+    }
+
+    public static void main(String[] args) {
+        CeaserCipher cipher = new CeaserCipher();
+        String result = cipher.CeaserReturner();
+        System.out.println("New Text: " + result);
+    }
+}
