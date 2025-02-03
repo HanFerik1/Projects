@@ -1,0 +1,9 @@
+In this problem, we are tasked with simulating a series of operations on a canvas where the artist applies a magic brush to either rows or columns, changing their color between black and gold. The goal is to determine how many cells are gold at the end of all operations.
+
+The first part of the program involves reading the dimensions of the canvas (r rows and c columns) and the number of operations (n). The canvas is represented conceptually, and instead of maintaining a full 2D grid (which could be inefficient), the program uses two arrays (rowFlips and colFlips) to track how many times each row or column has been "flipped." Initially, all rows and columns are in the "black" state, represented by 0 in the arrays. When a row or column is flipped, its corresponding entry in the array is incremented.
+
+The core of the solution is in handling each operation. The program processes each operation (either row or column flip) and updates the respective row or column flip count. Each operation either increments the corresponding row or column flip counter, depending on whether it's a row (R) or column (C) operation.
+
+After all operations are applied, the program calculates how many gold cells there are on the canvas. A cell is gold if the sum of flips for its row and column is odd, meaning the cell has been flipped an odd number of times. This is checked by examining the sum of rowFlips[i] + colFlips[j] for each cell (i, j) on the canvas. If the sum is odd, the cell is gold, and the gold cell count is incremented.
+
+Finally, the program outputs the total number of gold cells. This approach efficiently calculates the result without needing to construct a full canvas, making it scalable for larger inputs.
