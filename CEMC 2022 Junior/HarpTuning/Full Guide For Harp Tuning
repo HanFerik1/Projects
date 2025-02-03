@@ -1,0 +1,11 @@
+This Java program processes a string of characters representing a harp's tuning instructions, where each tuning instruction specifies whether a string should be tightened or loosened by a certain number. It reads the input string, processes the instructions, and then outputs the actions to be performed for each string.
+
+The program begins by creating a Scanner object called inputTuning to read the tuning input from the user. It prompts the user for the tuning string, which includes string identifiers (like "E" or "A") and tuning instructions (e.g., "+3" or "-5"). After reading the input string, the Scanner object is closed to avoid any resource leaks.
+
+The program then initializes a variable segmentStart to 0, which will be used to mark the starting position of each string identifier. It enters a loop that iterates through each character of the tuning string. If it encounters either a "+" or a "-", it means there is an instruction for tuning a specific string. At this point, the program stores the index of the tuning character (counterTuning) and begins another loop (counterWhile) to capture the number (digit) following the tuning symbol.
+
+The program then extracts the string identifier (from segmentStart to the index of the tuning symbol) and the number of steps to tighten or loosen the string (from counterTuning + 1 to the end of the number). Based on whether the tuning symbol is "+" or "-", the program prints out an instruction to either "tighten" or "loosen" the string by the specified number of steps.
+
+After processing each tuning instruction, the segmentStart is updated to the position after the number, and the outer loop's index i is updated to skip over the processed segment. This ensures that the program continues correctly to the next segment of the string. The program repeats this process until all tuning instructions have been processed and printed.
+
+Overall, this program efficiently parses the tuning string, extracting and interpreting each tuning instruction, and provides the user with clear output indicating which strings need to be tightened or loosened and by how many steps.
