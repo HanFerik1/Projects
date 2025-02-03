@@ -1,0 +1,9 @@
+The problem "Deliv-e-droid" involves calculating a final score for a robot in a game based on the number of packages delivered and the number of collisions with obstacles. The score is determined by a specific set of rules: the robot earns points for each package delivered, loses points for each collision, and may receive a bonus if more packages are delivered than collisions.
+
+To begin, the robot gains 50 points for every package delivered. These points are calculated by multiplying the number of packages delivered by 50. On the other hand, the robot loses 10 points for every collision with an obstacle. This penalty is calculated by multiplying the number of collisions by 10. The total score is then computed by subtracting the points lost due to collisions from the points gained by delivering packages.
+
+In addition to these calculations, a bonus of 500 points is awarded if the number of packages delivered is greater than the number of collisions. This bonus is added to the total score only if the condition (packages delivered > collisions) is true. If this condition is not met, no bonus is applied.
+
+For example, if the robot delivers 5 packages and collides with 2 obstacles, the score would be calculated as follows: 5 packages * 50 points = 250 points, minus 2 collisions * 10 points = 20 points, resulting in a score of 230. Since the number of packages (5) is greater than the number of collisions (2), a 500-point bonus is added, bringing the final score to 730. If the robot delivers no packages but collides with 10 obstacles, the score would be -100 points, with no bonus applied.
+
+The solution involves reading the two integers (number of packages and number of collisions), performing the arithmetic calculations, and outputting the final score. This method ensures that the score is computed efficiently and accurately according to the rules specified in the problem.
