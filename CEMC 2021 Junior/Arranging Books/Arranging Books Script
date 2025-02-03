@@ -1,0 +1,39 @@
+public class ArrangingBooks {
+    public static void main(String[] args) {
+        String books = "LLSLM";
+
+        int L_count = 0, M_count = 0, S_count = 0;
+
+        for (char book : books.toCharArray()) {
+            if (book == 'L') L_count++;
+            if (book == 'M') M_count++;
+            if (book == 'S') S_count++;
+        }
+
+        String[] regions = new String[3];
+        regions[0] = books.substring(0, L_count);
+        regions[1] = books.substring(L_count, L_count + M_count);
+        regions[2] = books.substring(L_count + M_count);
+
+        int L_in_M = 0, L_in_S = 0, M_in_L = 0, M_in_S = 0, S_in_L = 0, S_in_M = 0;
+
+        for (char book : regions[0].toCharArray()) {
+            if (book == 'M') M_in_L++;
+            if (book == 'S') S_in_L++;
+        }
+
+        for (char book : regions[1].toCharArray()) {
+            if (book == 'L') L_in_M++;
+            if (book == 'S') S_in_M++;
+        }
+
+        for (char book : regions[2].toCharArray()) {
+            if (book == 'L') L_in_S++;
+            if (book == 'M') M_in_S++;
+        }
+
+        int swaps = Math.max(L_in_M, M_in_L) + Math.max(M_in_S, S_in_M) + Math.max(L_in_S, S_in_L);
+
+        System.out.println(swaps);
+    }
+}
