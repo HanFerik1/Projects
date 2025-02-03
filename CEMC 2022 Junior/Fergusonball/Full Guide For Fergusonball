@@ -1,0 +1,10 @@
+
+This Java program calculates how many players in a game called "Fergusonball" achieve a score above 40. It first takes input for the number of players and then iterates through each player, calculating their total score based on their number of scores and fouls. The program then counts how many players surpass the threshold of 40 points and prints this count.
+
+The program begins by creating a Scanner object named inputNumberPlayer to read the number of players. It then initializes a counterPass variable to keep track of players who score more than 40 points. The program enters a loop that iterates once for each player.
+
+Inside the loop, the program initializes totalScore to zero and creates another Scanner object to read the number of scores a player has. Each score is worth 5 points, so the program multiplies the input value by 5 and stores it in totalScore.
+
+Next, the program creates another Scanner object to read the number of fouls committed by the player. Since each foul deducts 3 points, the program subtracts numberFouls * 3 from totalScore. After computing the total score, the program checks if it is greater than 40. If so, it increments counterPass.
+
+Finally, after processing all players, the program prints the value of counterPass, which represents the number of players whose scores exceed 40. However, the program has a flaw: it unnecessarily creates multiple Scanner objects inside the loop, which is inefficient and could be improved by using a single Scanner object for all inputs. Additionally, the empty System.out.println("") statements serve no purpose and can be removed.
