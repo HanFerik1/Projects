@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class DusaAndYobis {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int dusaSize = scanner.nextInt();
+        
+        while (scanner.hasNextInt()) {
+            int yobiSize = scanner.nextInt();
+            if (yobiSize < dusaSize) {
+                dusaSize += yobiSize;
+            } else {
+                break;
+            }
+        }
+        
+        System.out.println(dusaSize);
+        scanner.close();
+    }
+}
