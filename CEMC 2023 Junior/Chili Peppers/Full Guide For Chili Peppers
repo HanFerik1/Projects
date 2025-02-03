@@ -1,0 +1,9 @@
+The Java code is designed to calculate the total spiciness of a chili based on the peppers Ron adds, where each pepper has a specific spiciness value measured in Scolville Heat Units (SHU). The main structure of the code consists of defining arrays for pepper names and their corresponding SHU values, then iterating through the input to sum up the SHU values based on the peppers added by the user.
+
+First, two arrays are declared. The pepperNames array holds the names of the six available peppers: "Poblano", "Mirasol", "Serrano", "Cayenne", "Thai", and "Habanero". The pepperSHU array holds the SHU values corresponding to each pepper, respectively: 1500, 6000, 15500, 40000, 75000, and 125000. These arrays are used to map the pepper names to their SHU values. By using the same index for both arrays, the program can easily look up the SHU value for any given pepper name.
+
+The program starts by reading the number of peppers, n, that Ron will add to the chili. After that, it reads the names of the peppers one by one. For each pepper name, the program loops through the pepperNames array to find a match. When a match is found, the corresponding SHU value is added to the totalSpiciness variable. This ensures that the total spiciness increases by the correct value for each pepper.
+
+Once all peppers have been processed, the program outputs the final totalSpiciness, which represents the combined SHU of all the peppers added to the chili. This approach ensures that the code is efficient and easy to understand by using arrays to store pepper names and their corresponding SHU values.
+
+The code effectively handles the input and output based on the problem specifications, ensuring that even if the same pepper is added multiple times, its SHU value will be added each time it appears. The use of arrays simplifies the logic and ensures the program works as expected.
