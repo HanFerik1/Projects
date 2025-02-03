@@ -1,0 +1,61 @@
+import java.util.*;
+
+public class HarvestWaterloo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int rows = scanner.nextInt();
+        int cols = scanner.nextInt();
+        scanner.nextLine();
+
+        char[][] patch = new char[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            patch[i] = scanner.nextLine().toCharArray();
+        }
+
+        int startRow = scanner.nextInt() - 1;
+        int startCol = scanner.nextInt() - 1;
+
+        int[] rowDirection = {-1, 1, 0, 0};
+        int[] colDirection = {0, 0, -1, 1};
+
+        int smallValue = 1;
+        int mediumValue = 3;
+        int largeValue = 5;
+
+        int totalValue = 0;
+        boolean[][] visited = new boolean[rows][cols];
+
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[] {startRow, startCol});
+        visited[startRow][startCol] = true;
+
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int r = current[0], c = current[1];
+
+            char cell = patch[r][c];
+            if (cell == 'S') {
+                totalValue += smallValue;
+            } else if (cell == 'M') {
+                totalValue += mediumValue;
+            } else if (cell == 'L') {
+                totalValue += largeValue;
+            }
+
+            for (int i = 0; i < 4; i++) {
+                int newRow = r + rowDirection[i];
+                int newCol = c + colDirection[i];
+
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols &&
+                    !visited[newRow][newCol] && patch[newRow][newCol] != '*') {
+                    visited[newRow][newCol] = true;
+                    queue.offer(new int[] {newRow, newCol});
+                }
+            }
+        }
+
+        System.out.println(totalValue);
+        scanner.close();
+    }
+}
