@@ -1,0 +1,13 @@
+The problem asks to identify two troublesome keys on a keyboard: the silly key and the quiet key. The silly key always displays the wrong letter when pressed, while the quiet key doesn't display anything at all when pressed. Your goal is to determine which keys correspond to these behaviors based on the sequence of keys pressed and the corresponding letters displayed on the screen.
+
+To solve the problem, the program begins by reading two lines of input: the sequence of keys pressed (pressedKeys) and the letters that appeared on the screen (displayedLetters). These inputs help identify the two problematic keys.
+
+The first step is to identify the silly key. The program iterates through each character in the pressedKeys string and compares it to the corresponding character in the displayedLetters string. The first mismatch between a pressed key and the displayed letter indicates the silly key. The program then records this key as the silly key and the corresponding letter as the wrong letter that was displayed.
+
+After identifying the silly key, the program proceeds to find the quiet key. The quiet key is a key that was pressed but didn't cause any letter to appear on the screen. To detect this, the program checks for any key in the pressedKeys string that does not appear in the displayedLetters string. If such a key is found, it is identified as the quiet key.
+
+The program then outputs the results. The first line contains the silly key and the wrong letter that was displayed. The second line contains the quiet key if it was pressed; otherwise, it outputs a dash - to indicate that no quiet key was pressed.
+
+This solution works efficiently with a time complexity of O(n), where n is the length of the input strings. This is because the program makes a linear pass through the strings to identify the silly key and quiet key, and it uses basic string operations to perform these checks.
+
+In summary, the program reads the input, identifies the silly and quiet keys based on mismatches between the pressed and displayed characters, and then outputs the results accordingly.
