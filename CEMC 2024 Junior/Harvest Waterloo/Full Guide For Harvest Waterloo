@@ -1,0 +1,13 @@
+The goal of the code is to calculate the total value of pumpkins that a farmer can harvest from a pumpkin patch, given the constraints of bales of hay that block movement.
+
+The problem is represented as a grid (a 2D array), where each cell in the grid can either contain a small pumpkin (S), a medium pumpkin (M), a large pumpkin (L), or a bale of hay (*). The farmer begins at a specified position on the grid, and can move up, down, left, or right to adjacent cells. However, the farmer cannot move through bales of hay or go out of bounds of the grid.
+
+The first part of the solution involves reading the input to create the grid representing the pumpkin patch. The dimensions of the patch (number of rows and columns) are provided first, followed by the grid itself, where each character represents either a pumpkin or a bale of hay. The starting position of the farmer is given in the next input, and it is converted to a 0-based index for easier manipulation within the code.
+
+To explore the grid and collect all reachable pumpkins, a breadth-first search (BFS) algorithm is used. BFS is suitable for this problem because it systematically explores all reachable cells starting from the farmer's initial position. The BFS is implemented using a queue, which ensures that the farmer visits each valid neighboring cell in the grid without revisiting any cell (achieved with the help of a visited boolean array).
+
+During the BFS traversal, whenever a pumpkin is encountered, its corresponding value is added to a total. The value of the pumpkins is predefined: small pumpkins (S) are worth 1 dollar, medium pumpkins (M) are worth 3 dollars, and large pumpkins (L) are worth 5 dollars. The BFS continues to explore neighboring cells in all four cardinal directions (up, down, left, right), adding their values if they are pumpkins and not bales of hay.
+
+The algorithm terminates once all reachable pumpkins have been harvested, and the total value is printed.
+
+In conclusion, this solution efficiently handles the problem by employing BFS to explore the patch, ensuring that each reachable pumpkin is counted exactly once, and the total value is computed. This approach is both simple and effective for solving the problem within the provided constraints.
