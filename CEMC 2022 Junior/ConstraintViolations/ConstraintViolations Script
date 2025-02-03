@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+public class ConstraintViolations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int numTogetherConstraints = scanner.nextInt();
+        String[][] togetherConstraints = new String[numTogetherConstraints][2];
+        for (int i = 0; i < numTogetherConstraints; i++) {
+            togetherConstraints[i][0] = scanner.next();
+            togetherConstraints[i][1] = scanner.next();
+        }
+
+        int numNotTogetherConstraints = scanner.nextInt();
+        String[][] notTogetherConstraints = new String[numNotTogetherConstraints][2];
+        for (int i = 0; i < numNotTogetherConstraints; i++) {
+            notTogetherConstraints[i][0] = scanner.next();
+            notTogetherConstraints[i][1] = scanner.next();
+        }
+
+        int numGroups = scanner.nextInt();
+        String[][] groups = new String[numGroups][3];
+        for (int i = 0; i < numGroups; i++) {
+            for (int j = 0; j < 3; j++) {
+                groups[i][j] = scanner.next();
+            }
+        }
+
+        int violations = 0;
+
+        for (int i = 0; i < numTogetherConstraints; i++) {
+            String student1 = togetherConstraints[i][0];
+            String student2 = togetherConstraints[i][1];
+            boolean found = false;
+
+            for (int j = 0; j < numGroups; j++) {
+                if (isInGroup(groups[j], student1) && isInGroup(groups[j], student2)) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                violations++;
+            }
+        }
+
+        for (int i = 0; i < numNotTogetherConstraints; i++) {
+            String student1 = notTogetherConstraints[i][0];
+            String student2 = notTogetherConstraints[i][1];
+            boolean found = false;
+
+            for (int j = 0; j < numGroups; j++) {
+                if (isInGroup(groups[j], student1) && isInGroup(groups[j], student2)) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                violations++;
+            }
+        }
+
+        System.out.println(violations);
+    }
+
+    public static boolean isInGroup(String[] group, String student) {
+        for (int i = 0; i < group.length; i++) {
+            if (group[i].equals(student)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
