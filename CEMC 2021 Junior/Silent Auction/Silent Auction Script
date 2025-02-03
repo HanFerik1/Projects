@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class SilentAuction {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int n = scanner.nextInt();
+        scanner.nextLine();
+        
+        String winner = "";
+        int highestBid = 0;
+        
+        for (int i = 0; i < n; i++) {
+            String name = scanner.nextLine();
+            int bid = scanner.nextInt();
+            scanner.nextLine();
+            
+            if (bid > highestBid) {
+                highestBid = bid;
+                winner = name;
+            }
+        }
+        
+        System.out.println(winner);
+        
+        scanner.close();
+    }
+}
