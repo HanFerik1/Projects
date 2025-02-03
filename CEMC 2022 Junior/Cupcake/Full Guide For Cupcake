@@ -1,0 +1,7 @@
+This Java program calculates the number of leftover cupcakes after packing them into regular and small boxes. It first prompts the user to enter the number of regular boxes and small boxes they have, then computes the total number of cupcakes these boxes contain. Finally, it subtracts 28 from this total and prints the result.
+
+The program starts by creating a Scanner object named inputRegularBox to read user input. It then prompts the user to enter the number of regular boxes. Each regular box holds 8 cupcakes, so the user’s input is multiplied by 8 and stored in the regularBox variable.
+
+Next, the program creates another Scanner object named inputSmallBox and asks the user to enter the number of small boxes. However, instead of reading input from inputSmallBox, the program mistakenly reads from inputRegularBox again. Each small box should hold 3 cupcakes, so the input (if correctly read) would be multiplied by 3 and stored in smallBox.
+
+Finally, the program calculates the total number of cupcakes by adding regularBox and smallBox. It then subtracts 28 from this total and prints the result. The subtraction suggests that the program might be checking how many cupcakes remain after setting aside 28 cupcakes for a specific purpose. However, due to the input error, the number of small boxes might not be read correctly, which could lead to unexpected results.
