@@ -1,0 +1,5 @@
+The program calculates the total cost of a sushi meal based on the number of plates chosen by a customer. Each plate has a fixed cost depending on its color: red, green, or blue. The user inputs three non-negative integers representing the number of plates of each color they selected.
+
+First, the program uses the Scanner class to read user input. It stores the number of red, green, and blue plates in separate integer variables. Then, it multiplies these values by their respective fixed prices to determine the total cost.
+
+After performing the necessary calculations, the program prints the final cost to the console. Finally, it closes the Scanner object to prevent resource leaks. This simple structure ensures that the program efficiently calculates the total cost based on user input.
