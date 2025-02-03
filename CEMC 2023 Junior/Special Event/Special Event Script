@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class SpecialEvent {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int n = scanner.nextInt();
+        scanner.nextLine();
+        
+        int[] attendanceCount = new int[5];
+        
+        for (int i = 0; i < n; i++) {
+            String availability = scanner.nextLine();
+            for (int j = 0; j < 5; j++) {
+                if (availability.charAt(j) == 'Y') {
+                    attendanceCount[j]++;
+                }
+            }
+        }
+        
+        int maxAttendance = 0;
+        for (int i = 0; i < 5; i++) {
+            if (attendanceCount[i] > maxAttendance) {
+                maxAttendance = attendanceCount[i];
+            }
+        }
+        
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            if (attendanceCount[i] == maxAttendance) {
+                if (result.length() > 0) {
+                    result.append(",");
+                }
+                result.append(i + 1);
+            }
+        }
+        
+        System.out.println(result.toString());
+    }
+}
