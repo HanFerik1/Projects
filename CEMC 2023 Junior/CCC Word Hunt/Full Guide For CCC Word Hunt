@@ -1,0 +1,9 @@
+This Java program is designed to search for a given word within a grid of letters. The word can be found in a straight line horizontally, vertically, or diagonally. Additionally, the word can be split into two segments forming a right angle at one of its letters. The program reads input values, processes the grid, and counts the number of valid occurrences of the word before printing the result.
+
+First, the program reads the word to be searched, followed by the dimensions of the grid (rows and columns). It then constructs a 2D character array to store the grid, ensuring that each letter is accessible for searching. The input is taken in a structured manner to facilitate easy traversal of the grid during the search process.
+
+The main logic of the program involves checking each cell in the grid to determine whether the word can be formed starting from that position. This is done by exploring eight possible directions: left, right, up, down, and the four diagonal directions. For each direction, the program verifies if the entire word can be constructed without exceeding the grid boundaries.
+
+In addition to checking straight-line occurrences, the program also accounts for right-angle formations. This means that after following one direction for part of the word, it switches to a perpendicular direction to complete the word. To achieve this, the program first checks the validity of the first segment before verifying the continuation in another direction.
+
+Throughout the process, a counter keeps track of all valid occurrences of the word in the grid. Once all possible positions have been examined, the program prints the final count, which represents the number of times the word appears following the given rules. This approach ensures that all possible placements are considered efficiently.
