@@ -1,0 +1,7 @@
+The program first reads the number of columns, which determines the length of the laneway. It then initializes a 2D array to store the tile colors, reading two rows of input where 1 represents a black (wet) tile and 0 represents a white (dry) tile. This grid structure helps in determining adjacency between tiles.
+
+After storing the input, the program iterates through each tile to calculate the amount of warning tape needed. Each tile is an equilateral triangle, and since adjacent tiles share sides, the tape requirement depends on the exposed edges. The algorithm checks for each wet tile whether its six possible edges are exposed: three edges naturally belong to the tile, while the other three depend on whether adjacent tiles are also wet.
+
+For each wet tile, the program starts with an assumption of all three edges being exposed. It then checks whether there are adjacent wet tiles in the grid and subtracts shared edges from the count accordingly. If a neighboring tile is also wet, the shared edge between them does not contribute to the total tape length. This process ensures that only the outer perimeter of each connected wet area is counted.
+
+Finally, the program outputs the total tape length required to surround all wet areas. The approach is efficient as it only requires a single pass through the grid with a few conditional checks per tile. This guarantees that the solution runs in linear time relative to the number of tiles.
