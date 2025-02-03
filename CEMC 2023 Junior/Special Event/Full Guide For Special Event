@@ -1,0 +1,12 @@
+
+The code begins by importing the Scanner class, which is used for reading input from the user. The main method starts by initializing a Scanner object and reading the first line of input, which specifies the number of people interested in attending the event (n). After reading the number of people, the nextLine() method is called to move past the newline character left by nextInt().
+
+Next, an array named attendanceCount of size 5 is initialized to store the number of people available to attend on each of the five days. This array will track how many people can attend the event on each specific day.
+
+The program then enters a loop that iterates through each person's availability. For each person, it reads a string that indicates whether they are available on each of the five days (with 'Y' representing availability and '.' representing unavailability). A nested loop is used to check each of the five days for that person’s availability. If a person is available on a given day (i.e., the character is 'Y'), the corresponding index in the attendanceCount array is incremented.
+
+Once the availability data for all people has been processed, the code proceeds to find the maximum number of people who can attend on any day. This is done by iterating through the attendanceCount array and tracking the highest value in the array.
+
+Finally, the program constructs a string of day numbers where the maximum attendance occurs. If multiple days have the same maximum attendance, the day numbers are concatenated together, separated by commas. The program uses a StringBuilder to efficiently build this result string. The day numbers are 1-based, so the code adds 1 to each index when constructing the final output.
+
+The result is printed to the console, displaying the day numbers (or days) on which the largest number of people can attend the event. If there are multiple days with the same maximum attendance, they are printed in increasing order.
