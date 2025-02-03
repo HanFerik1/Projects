@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class HarpTuning {
+    public static void main(String[] args) {
+        Scanner inputTuning = new Scanner(System.in);
+        System.out.println("");
+        String tuning = inputTuning.nextLine();
+        inputTuning.close();
+        int segmentStart = 0; 
+        for (int i = 0; i < tuning.length(); i++) {
+            if (tuning.charAt(i) == '+' || tuning.charAt(i) == '-') {
+                int counterTuning = i;
+
+                int counterWhile = i + 1;
+                while (counterWhile < tuning.length() && Character.isDigit(tuning.charAt(counterWhile))) {
+                    counterWhile++;
+                }
+                String tuneNo = tuning.substring(segmentStart, counterTuning);
+                String number = tuning.substring(counterTuning + 1, counterWhile);
+
+                if (tuning.charAt(i) == '+') {
+                    System.out.println(tuneNo + " tighten " + number);
+                } else {
+                    System.out.println(tuneNo + " loosen " + number);
+                }
+                segmentStart = counterWhile; 
+                i = counterWhile - 1;
+            }
+        }
+    }
+}
