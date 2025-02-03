@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class ModernArt {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int r = scanner.nextInt();
+        int c = scanner.nextInt();
+        int n = scanner.nextInt();
+
+        int[] rowFlips = new int[r];
+        int[] colFlips = new int[c];
+
+        for (int i = 0; i < n; i++) {
+            String operation = scanner.next();
+            int index = scanner.nextInt() - 1;
+
+            if (operation.equals("R")) {
+                rowFlips[index]++;
+            } else if (operation.equals("C")) {
+                colFlips[index]++;
+            }
+        }
+
+        int goldCells = 0;
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if ((rowFlips[i] + colFlips[j]) % 2 == 1) {
+                    goldCells++;
+                }
+            }
+        }
+
+        System.out.println(goldCells);
+    }
+}
