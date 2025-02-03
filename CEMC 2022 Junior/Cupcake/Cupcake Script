@@ -1,0 +1,13 @@
+import java.util.Scanner;
+public class Cupcake {
+    public static void main(String[] args) {
+        Scanner inputRegularBox = new Scanner(System.in);
+        System.out.println("Enter Regular Boxes: ");
+        int regularBox = inputRegularBox.nextInt() * 8;
+        Scanner inputSmallBox = new Scanner(System.in);
+        System.out.println("Enter Small Boxes: ");
+        int smallBox = inputRegularBox.nextInt() * 3;
+
+        System.out.print((regularBox + smallBox) - 28);
+    }
+}
