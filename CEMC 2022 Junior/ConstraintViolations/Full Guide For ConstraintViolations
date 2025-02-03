@@ -1,0 +1,18 @@
+This program is a Java application that checks whether certain grouping constraints for students are violated. It first takes input specifying which students must be together ("together constraints") and which students must not be together ("not together constraints"). Then, it processes the student groups and determines how many violations occur, finally printing the total number of violations.
+
+The program begins by using a Scanner object to read input from the user. It first reads the number of "together constraints" and stores them in a two-dimensional array, where each constraint consists of a pair of students who must be in the same group. Similarly, it reads the "not together constraints" and stores them in another two-dimensional array, where each constraint consists of a pair of students who should not be in the same group.
+
+Next, the program reads the student groups. Each group consists of three students, and these groups are stored in a two-dimensional array. At this point, the program is ready to check for violations based on the given constraints.
+
+The first check is for "together constraints." For each pair of students in this category, the program verifies if they are in the same group. If a pair is not found together in any group, it is considered a violation, and the violations counter is incremented.
+
+The second check is for "not together constraints." Here, the program ensures that no pair of students from this category appears in the same group. If a pair is found together in any group, it is counted as a violation, and the violations counter is incremented.
+
+Finally, the program prints the total number of violations. At the end of the program, there is a helper method called isInGroup, which checks if a given student is part of a specific group. This method returns true if the student is in the group and false otherwise. It is used to simplify the constraint-checking logic and make the code more readable.
+
+
+
+
+
+
+
