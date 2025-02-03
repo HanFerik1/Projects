@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Fergusonball {
+    public static void main(String[] args){
+        Scanner inputNumberPlayer = new Scanner(System.in);
+        System.out.println("");
+        int numberPlayer = inputNumberPlayer.nextInt();
+
+        int totalScore;
+        int counterPass = 0;
+        for (int i = 0; i < numberPlayer; i++){
+            totalScore = 0;
+            Scanner inputNumberScores = new Scanner(System.in);
+            System.out.println("");
+            int numberScores = inputNumberScores.nextInt();
+            totalScore = numberScores * 5;
+            Scanner inputNumberFouls = new Scanner(System.in);
+            System.out.println("");
+            int numberFouls = inputNumberFouls.nextInt(); 
+            totalScore -= numberFouls * 3;
+
+            if (totalScore > 40){
+                counterPass++;
+            }
+        }     
+        System.out.println(counterPass);   
+    }
+}
