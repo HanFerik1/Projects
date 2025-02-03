@@ -1,0 +1,7 @@
+The Java program solves the problem of determining the third-highest score in a list of participant scores and counting how many participants achieved that score.
+
+Initially, the program reads the number of participants and their respective scores. It then stores these scores in a list called scores. To identify the distinct scores, the program converts this list into a TreeSet, which automatically removes duplicates and sorts the scores in ascending order. Using Collections.reverseOrder(), the program ensures the set is sorted in descending order, which allows for easy identification of the highest, second-highest, and third-highest scores.
+
+After obtaining the distinct sorted scores in descending order, the program converts the TreeSet back into a list, sortedScores, to access the third-highest score, which is located at index 2. The program then uses Collections.frequency() to count how many participants have achieved this third-highest score in the original list of scores. Finally, the program prints the third-highest score and the count of participants who achieved it.
+
+The solution efficiently handles the problem by leveraging a TreeSet for sorting and removing duplicates, followed by a list conversion for easy access to the third-highest score and a frequency count to determine the number of participants who scored it. The program's time complexity is O(n log n) due to the sorting step, where n is the number of participants.
