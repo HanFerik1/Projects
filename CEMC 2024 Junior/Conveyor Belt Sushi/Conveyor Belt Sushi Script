@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class ConveyorBeltSushi {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int redPlatePrice = 5;
+        int greenPlatePrice = 10;
+        int bluePlatePrice = 7;
+        
+        int redPlates = scanner.nextInt();
+        int greenPlates = scanner.nextInt();
+        int bluePlates = scanner.nextInt();
+        
+        int totalCost = (redPlates * redPlatePrice) + 
+                        (greenPlates * greenPlatePrice) + 
+                        (bluePlates * bluePlatePrice);
+        
+        System.out.println(totalCost);
+        
+        scanner.close();
+    }
+}
