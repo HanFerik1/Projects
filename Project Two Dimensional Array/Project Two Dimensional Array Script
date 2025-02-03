@@ -1,0 +1,115 @@
+public class ArrayProject {
+    public void printArray(String[][] arrayExample) {
+        System.out.println("2D Array contents:");
+        for (String[] row : arrayExample) { 
+            for (String value : row) {  
+                System.out.print(value + " ");  
+            }
+            System.out.println();
+        }
+    }
+    
+    public static void changeName(String[][] array, int row, int col, String newName) {
+        if ((row >= 0 && row < array.length) && (col >= 0 && col < array[row].length)) {
+            array[row][col] = newName;
+        } else {
+            System.out.println("Invalid index.");
+        }
+    }
+
+    public static int countItems(int[][] arr, int max) {
+        int count = 0;
+        for (int[] row : arr) {
+            for (int num : row) {
+                if (num > max) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static int totalItems(int[][] arr, int max) {
+        int sum = 0;
+        for (int[] row : arr) {
+            for (int num : row) {
+                if (num > max) {
+                    sum += num;
+                }
+            }
+        }
+        return sum;
+    }
+
+    public static int[] spiralOrder(int[][] arr) {
+        if (arr == null || arr.length == 0) return new int[0];
+
+        int rows = arr.length;
+        int cols = arr[0].length;
+        int[] result = new int[rows * cols];
+
+        int left = 0, right = cols - 1;
+        int top = 0, bottom = rows - 1;
+        int index = 0;
+
+        while (left <= right && top <= bottom) {
+            for (int i = left; i <= right; i++) {
+                result[index++] = arr[top][i];
+            }
+            top++;
+
+            for (int i = top; i <= bottom; i++) {
+                result[index++] = arr[i][right];
+            }
+            right--;
+
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    result[index++] = arr[bottom][i];
+                }
+                bottom--;
+            }
+
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    result[index++] = arr[i][left];
+                }
+                left++;
+            }
+        }
+
+        return result;
+    }
+
+    
+    public static void main(String[] args) {
+        ArrayProject project = new ArrayProject();
+        String [][] names = {
+                             {"Liam", "Noah","Lucas"},
+                             {"Will","Eli","James"},
+                             {"Ben","Lucas","Mason"},
+                             {"Lucas","Alex","Han"}};
+        int [][] ages = { {17,32,40,12,51,28},
+                         {73,57,4,7,36,15},
+                         {92,11,55,39,65,2}};
+
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        project.printArray(names); 
+        changeName(names, 1, 2, "Jack");
+        project.printArray(names);
+        
+        System.out.println(countItems(matrix, 5));
+        System.out.println(totalItems(matrix, 5));
+
+        int[] spiral = spiralOrder(matrix);
+        System.out.print("Spiral Order: ");
+        for (int num : spiral) {
+            System.out.print(num + " ");
+        }
+    }
+}
