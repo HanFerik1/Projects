@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class DelivEDroid {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int packagesDelivered = scanner.nextInt();
+        int collisions = scanner.nextInt();
+        
+        int score = 50 * packagesDelivered - 10 * collisions;
+        
+        if (packagesDelivered > collisions) {
+            score += 500;
+        }
+        
+        System.out.println(score);
+    }
+}
