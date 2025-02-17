@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Epidemiology {
+    public static void main(String[] args){
+        Scanner pInput = new Scanner(System.in);
+        System.out.print("");
+        int p = pInput.nextInt();
+        
+        Scanner nInput = new Scanner(System.in);
+        System.out.print("");
+        int n = nInput.nextInt();
+        
+        Scanner rInput = new Scanner(System.in);
+        System.out.print("");
+        int r = rInput.nextInt();
+
+        int sumPeople = n;
+        int numberDays = 0;
+
+        while (sumPeople < p){
+            sumPeople += sumPeople * r;
+            numberDays++;
+        }
+        
+        System.out.println(numberDays);
+    }
+}
