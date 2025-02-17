@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class DogTreats {
+    public static void main(String[] args){
+        Scanner sInput = new Scanner(System.in);
+        System.out.print("");
+        int s = sInput.nextInt();
+        
+        Scanner mInput = new Scanner(System.in);
+        System.out.print("");
+        int m = mInput.nextInt();
+        
+        Scanner lInput = new Scanner(System.in);
+        System.out.print("");
+        int l = lInput.nextInt();
+        
+        int sum = (s * 1) + (m * 2) + (l * 3);
+        
+        if (sum > 10){
+            System.out.println("happy");
+        }
+        else{
+            System.out.println("sad");
+        }
+    }
+}
