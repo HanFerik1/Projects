@@ -1,0 +1,31 @@
+A Git project page will be created and shared with the instructor.
+
+The architecture of the Raspberry Pi Pico will be studied to understand what it is and how it works.
+
+The Raspberry Pi Pico will be booted and introduced to the computer system.
+
+Using Visual Studio Code (VSCode) or Thonny, the first code will be written to make the LED on the Pico blink, and this will be added to the portfolio page.
+
+The circuit will be set up with a breadboard, and an external LED will blink. The concept of LEDs will be explained.
+
+The standard method for connecting the LED and Pico to the breadboard will be explained.
+
+The LED and Pico will be connected to the breadboard, and a DC motor will be controlled to rotate both clockwise and counterclockwise.
+
+A web-based HTML page will be created. On this page, the LED on the Pico and the LED on the breadboard will blink. Additionally, buttons for controlling the rotation of the motor will be added.
+
+The rotation of the motor will be controlled within the range of 0 to 180 degrees.
+
+The L298 motor driver will be introduced, and its use will be explained with examples from GitHub.
+
+The L298 motor driver will be connected to two motors and controlled using the Raspberry Pi Pico.
+
+Power management will be researched, and the power issue related to two DC motors, one Pico, and the L298 will be resolved.
+
+The robot assembly will be completed.
+
+The robot will be tested using the web interface with wired connections, and the buttons on the web page will be updated according to the challenge requirements.
+
+The existing Pico will be replaced with the Pico W, and the system will be operated wirelessly. The network topology and web server architecture will be explained.
+
+The final portfolio will be completed, including the electronic architecture, programming architecture, and design architecture. A 30-second working video will be uploaded to GitHub and presented to the instructor, Sedat.
