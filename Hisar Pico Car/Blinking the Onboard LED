@@ -1,0 +1,20 @@
+This program demonstrates how to blink the onboard LED of the Raspberry Pi Pico using MicroPython. The primary goal is to familiarize students with fundamental concepts in embedded systems programming, such as controlling GPIO (General Purpose Input/Output) pins, using infinite loops, and introducing timed delays.
+
+The program begins by importing two essential modules: machine and time. The machine module provides low-level access to the Pico’s hardware, and within it, the Pin class is used to define and control GPIO pins. The time module is used for introducing delays between LED toggles, allowing us to control the frequency of the blinking.
+
+Next, the program defines a variable named led, which is initialized as a Pin object. Specifically, it configures GPIO pin 25 as an output pin. On the Raspberry Pi Pico, GPIO 25 is hardwired to the onboard LED, making it a convenient choice for introductory exercises. By setting the pin mode to Pin.OUT, we indicate that this pin will be used to send signals (HIGH or LOW voltage) to control an external component, in this case, the LED.
+
+The program then enters an infinite loop using while True:. This ensures that the following actions repeat continuously for as long as the Pico remains powered. Inside the loop, the statement led.toggle() is used to reverse the current state of the LED—turning it on if it was off, and vice versa. This method simplifies the logic by eliminating the need to manually track the current state of the pin. After each toggle, the program pauses for half a second using time.sleep(0.5). This delay is critical because, without it, the LED would toggle states too quickly for the human eye to perceive the blinking effect.
+
+Overall, this simple program introduces key concepts in embedded programming such as hardware initialization, digital output control, timing, and continuous execution using loops. Saving the file as main.py directly onto the Pico allows the code to run automatically every time the board is powered, making this example an ideal starting point for more complex hardware-interfacing projects.
+
+Program Code:
+
+from machine import Pin
+import time
+
+led = Pin(25, Pin.OUT)
+
+while True:
+    led.toggle()
+    time.sleep(0.5)
