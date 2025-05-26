@@ -13,8 +13,10 @@ Program Code:
 from machine import Pin
 import time
 
+# Create a Pin object for GPIO 15 (connected to external LED)
 led = Pin(15, Pin.OUT)
 
+# Blink the LED in an infinite loop
 while True:
-    led.toggle()
-    time.sleep(0.5)
+    led.toggle()       # Change the LED state (ON -> OFF or OFF -> ON)
+    time.sleep(0.5)    # Wait for 0.5 seconds
