@@ -10,11 +10,13 @@ Overall, this simple program introduces key concepts in embedded programming suc
 
 Program Code:
 
-from machine import Pin
-import time
+from machine import Pin  # Import the Pin class from the machine module to control GPIO
+import time              # Import the time module to use delay functions
 
+# Initialize GPIO pin 25 (onboard LED) as an output pin
 led = Pin(25, Pin.OUT)
 
+# Start an infinite loop
 while True:
-    led.toggle()
-    time.sleep(0.5)
+    led.toggle()        # Toggle the state of the LED (ON to OFF or OFF to ON)
+    time.sleep(0.5)     # Wait for 0.5 seconds before toggling again
