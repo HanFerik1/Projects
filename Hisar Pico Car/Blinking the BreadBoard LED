@@ -1,0 +1,20 @@
+In this step, we will extend our understanding of digital output control by connecting an external LED to the Raspberry Pi Pico using a breadboard, and then writing a program that blinks this external LED. This introduces both fundamental hardware knowledge and reinforces the GPIO programming concepts previously applied to the onboard LED.
+
+Before writing code, it is essential to understand what an LED is and how it functions. An LED, or Light Emitting Diode, is a semiconductor device that emits light when an electric current passes through it. Unlike regular bulbs, LEDs are polarized components, meaning they have a positive leg (anode) and a negative leg (cathode), and current must flow in the correct direction—from anode to cathode—for the LED to illuminate. LEDs are widely used due to their low power consumption, fast switching time, and long lifespan. However, they must always be used with a current-limiting resistor (typically 220Ω or 330Ω) to prevent damage caused by excessive current.
+
+To begin the hardware setup, place a Raspberry Pi Pico and a LED onto a breadboard. Connect one end of a resistor to the longer leg (anode) of the LED, and then connect the other end of the resistor to a GPIO pin on the Pico (for example, GPIO 15). The shorter leg (cathode) of the LED should be connected directly to the Pico’s GND (ground) pin. This simple circuit allows the GPIO pin to provide voltage to the LED, completing the circuit and turning the LED on.
+
+On the software side, we will write a MicroPython program similar to the previous example, but this time we will control GPIO 15 instead of GPIO 25. The code will use the machine module to configure GPIO 15 as an output, and the time module to create regular time intervals for blinking. Inside an infinite loop, the program will toggle the LED’s state and pause for a short delay (e.g., 0.5 seconds), creating a visible blinking effect.
+
+This exercise reinforces the connection between hardware components and software control, highlighting how microcontrollers like the Pico interact with the physical world. It also introduces students to prototyping techniques using breadboards, which is a vital skill in embedded systems and robotics development.
+
+Program Code:
+
+from machine import Pin
+import time
+
+led = Pin(15, Pin.OUT)
+
+while True:
+    led.toggle()
+    time.sleep(0.5)
