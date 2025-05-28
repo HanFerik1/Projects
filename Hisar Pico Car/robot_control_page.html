@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Robot Controller</title>
+  <style>
+    body {
+      text-align: center;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+
+    .controller {
+      display: inline-block;
+      margin-top: 100px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      margin: 10px;
+    }
+
+    .arrow-btn {
+      width: 80px;
+      height: 80px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Web-Based Robot Control</h1>
+  <div class="controller">
+    <div class="row">
+      <img src="img/up.png" alt="Forward" class="arrow-btn" onclick="sendCommand('forward')">
+    </div>
+    <div class="row">
+      <img src="img/left.png" alt="Left" class="arrow-btn" onclick="sendCommand('left')">
+      <img src="img/down.png" alt="Backward" class="arrow-btn" onclick="sendCommand('backward')">
+      <img src="img/right.png" alt="Right" class="arrow-btn" onclick="sendCommand('right')">
+    </div>
+  </div>
+
+  <script>
+    function sendCommand(direction) {
+      fetch(`http://your-pico-ip-address/${direction}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network error");
+          }
+          return response.text();
+        })
+        .then(data => {
+          console.log("Response:", data);
+        })
+        .catch(error => {
+          console.error("Error sending command:", error);
+        });
+    }
+  </script>
+</body>
+</html>
