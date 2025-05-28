@@ -1,0 +1,63 @@
+This program allows a Raspberry Pi Pico to control the rotation of a robot by turning it 180 degrees to the left and 180 degrees to the right. It uses two DC motors to provide the necessary movement, with each motor controlled via two GPIO pins. The goal of this program is to make the robot turn precisely by rotating both motors in the appropriate direction for a set duration. The rotation is timed using time.sleep() to make the motors run for a fixed period, after which they are stopped, causing the robot to complete a 180-degree turn.
+
+The program begins by defining motor control pins using the machine.Pin class to create four output pins: two pins for each motor's direction control. Motor 1 is connected to GPIO 14 and GPIO 15, while motor 2 is connected to GPIO 16 and GPIO 17. The function of these pins is to control the direction of rotation of each motor. By setting these pins to HIGH or LOW, we determine the direction the motor spins. For instance, when IN1 is set to HIGH and IN2 is set to LOW, the motor spins in one direction (forward), while switching them will cause the motor to rotate in the opposite direction (backward).
+
+The rotate_right() function is responsible for rotating the robot 180 degrees to the right. In this function, both motors are set to rotate forward, which causes the robot to spin in place. The duration of the rotation is controlled by time.sleep(2), which keeps the motors running for two seconds, sufficient for the robot to complete a 180-degree turn. After the rotation, both motors are stopped by setting all control pins to LOW.
+
+Similarly, the rotate_left() function is used to rotate the robot 180 degrees to the left. To achieve this, the directions of both motors are reversed by setting IN1 to LOW and IN2 to HIGH for both motors. This will cause the motors to rotate in the opposite direction, making the robot turn left. Like the rotate_right() function, the rotation duration is set to two seconds using time.sleep(2).
+
+After each rotation, there is a brief pause of one second between actions, which allows the robot to come to a complete stop before the next action is executed. The main loop then alternates between rotating the robot to the right and left, with a pause between each turn. This loop continues indefinitely, making the robot perform a continuous series of rotations.
+
+The code structure is simple and modular, with distinct functions for rotating the robot right and left, making the code easy to extend and modify. If needed, the program could be modified to adjust the duration of the rotations or even include features such as speed control by using PWM (Pulse Width Modulation) for controlling motor speed, rather than just turning them on or off.
+
+In summary, this program demonstrates basic motor control and timed rotations, which are fundamental skills in robotics. The control of two DC motors via GPIO pins provides the necessary movement for the robot to turn, while the timing mechanism ensures precise control of the rotation. This simple yet effective method forms the basis for more complex robot behaviors and is a building block for many robotic navigation tasks.
+
+from machine import Pin
+import time
+
+# Motor control pins (adjust GPIOs according to your wiring)
+motor1_in1 = Pin(14, Pin.OUT)  # Motor 1 IN1
+motor1_in2 = Pin(15, Pin.OUT)  # Motor 1 IN2
+motor2_in1 = Pin(16, Pin.OUT)  # Motor 2 IN1
+motor2_in2 = Pin(17, Pin.OUT)  # Motor 2 IN2
+
+# Function to rotate the robot 180 degrees to the right
+def rotate_right():
+    # Set both motors to move forward (right turn)
+    motor1_in1.value(1)
+    motor1_in2.value(0)
+    motor2_in1.value(1)
+    motor2_in2.value(0)
+    print("Rotating 180 degrees to the right...")
+    time.sleep(2)  # Adjust the sleep time to suit your robot's speed
+
+    # Stop the motors after rotating
+    motor1_in1.value(0)
+    motor1_in2.value(0)
+    motor2_in1.value(0)
+    motor2_in2.value(0)
+    print("Rotation complete")
+
+# Function to rotate the robot 180 degrees to the left
+def rotate_left():
+    # Set both motors to move backward (left turn)
+    motor1_in1.value(0)
+    motor1_in2.value(1)
+    motor2_in1.value(0)
+    motor2_in2.value(1)
+    print("Rotating 180 degrees to the left...")
+    time.sleep(2)  # Adjust the sleep time to suit your robot's speed
+
+    # Stop the motors after rotating
+    motor1_in1.value(0)
+    motor1_in2.value(0)
+    motor2_in1.value(0)
+    motor2_in2.value(0)
+    print("Rotation complete")
+
+# Main loop to control the rotation
+while True:
+    rotate_right()  # Rotate right for 180 degrees
+    time.sleep(1)  # Wait for 1 second before next action
+    rotate_left()   # Rotate left for 180 degrees
+    time.sleep(1)   # Wait for 1 second before repeating
