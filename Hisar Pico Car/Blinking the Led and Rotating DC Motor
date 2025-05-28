@@ -1,0 +1,72 @@
+This MicroPython program controls both an LED and a DC motor connected to the Raspberry Pi Pico through a breadboard. The program continuously alternates between turning the LED on, rotating the DC motor forward, then rotating it backward, before stopping the motor and turning off the LED. The process is repeated in a continuous loop.
+
+The program begins by importing the necessary modules: Pin from the machine module and the time module. The Pin class allows the program to control the GPIO pins on the Raspberry Pi Pico, while the time module provides the ability to pause the execution of the code for a set duration, which is essential for motor rotation and LED timing.
+
+In the code, GPIO 16 is used to control the LED attached to the breadboard. A Pin object called led is created, and its state is controlled using the functions turn_on_led() and turn_off_led(). The function turn_on_led() sets the GPIO pin to HIGH (1), turning the LED on, and turn_off_led() sets it to LOW (0), turning the LED off. These functions help manage the LED's state throughout the program.
+
+For controlling the DC motor, GPIO 14 and GPIO 15 are used to send control signals to the IN1 and IN2 pins of the L298N motor driver, respectively. The motor's direction is controlled by setting these pins to HIGH or LOW. To rotate the motor in a forward direction (clockwise), IN1 is set to HIGH and IN2 is set to LOW, which is achieved in the function rotate_motor_right(). Conversely, to rotate the motor backward (counterclockwise), IN1 is set to LOW and IN2 is set to HIGH, which is handled in the function rotate_motor_left().
+
+The motor's movement is timed using the time.sleep() function. The motor runs forward for 2 seconds in rotate_motor_right(), then stops for 1 second by setting both IN1 and IN2 to LOW. Afterward, the motor runs in reverse for another 2 seconds in rotate_motor_left(), and again stops for 1 second. This process is continuously repeated in the while True loop, where the LED and motor alternate between their respective states.
+
+In summary, this program introduces students to controlling both digital outputs (LED) and motor direction using GPIO pins on the Raspberry Pi Pico. It demonstrates the use of control logic to manage the state of hardware components, time delays to create observable effects, and looping to create a continuous pattern of operations. The use of functions such as turn_on_led(), turn_off_led(), rotate_motor_right(), and rotate_motor_left() modularizes the code, making it easier to understand and extend. This is a fundamental concept in embedded systems programming where hardware control is performed based on time intervals and logical conditions.
+
+from machine import Pin
+import time
+
+# LED setup (GPIO 16)
+led = Pin(16, Pin.OUT)
+
+# Motor control pins (GPIO 14 and 15)
+motor_in1 = Pin(14, Pin.OUT)
+motor_in2 = Pin(15, Pin.OUT)
+
+# Function to turn the LED on
+def turn_on_led():
+    led.value(1)  # Set GPIO to HIGH, LED ON
+
+# Function to turn the LED off
+def turn_off_led():
+    led.value(0)  # Set GPIO to LOW, LED OFF
+
+# Function to rotate motor clockwise (right)
+def rotate_motor_right():
+    motor_in1.value(1)
+    motor_in2.value(0)
+    print("Motor rotating right (clockwise)")
+    
+# Function to rotate motor counterclockwise (left)
+def rotate_motor_left():
+    motor_in1.value(0)
+    motor_in2.value(1)
+    print("Motor rotating left (counterclockwise)")
+
+# Main loop
+while True:
+    # Light up the LED
+    turn_on_led()
+    print("LED is ON")
+    
+    # Rotate motor right (clockwise)
+    rotate_motor_right()
+    time.sleep(2)  # Motor runs for 2 seconds
+    
+    # Stop the motor
+    motor_in1.value(0)
+    motor_in2.value(0)
+    print("Motor stopped")
+    time.sleep(1)
+    
+    # Rotate motor left (counterclockwise)
+    rotate_motor_left()
+    time.sleep(2)  # Motor runs for 2 seconds
+    
+    # Stop the motor again
+    motor_in1.value(0)
+    motor_in2.value(0)
+    print("Motor stopped")
+    time.sleep(1)
+    
+    # Turn off the LED
+    turn_off_led()
+    print("LED is OFF")
+    time.sleep(2)  # Wait 2 seconds before restarting the loop
