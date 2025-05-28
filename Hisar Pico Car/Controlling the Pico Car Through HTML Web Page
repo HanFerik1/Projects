@@ -1,0 +1,102 @@
+This MicroPython program enables the Raspberry Pi Pico to act as a web server, allowing remote control of an LED and a DC motor via a simple HTML interface. The program utilizes the network and socket modules to set up the web server, which serves an HTML page containing buttons to toggle the LED and control the direction of the motor. The code also connects the Pico to a Wi-Fi network, allowing it to be accessed from any device connected to the same network.
+
+The program begins by establishing a connection to the Wi-Fi network. It uses the network.WLAN class to activate the Wi-Fi interface of the Pico and connect to the specified SSID and password. Once the connection is successful, the program prints the Pico's IP address to the serial monitor, enabling users to access the web server using this address.
+
+Next, the code sets up a simple web server using the socket module. The server listens for HTTP requests on port 80 and responds with an HTML page. This page is served directly from the Pico, and it contains two main sections: one for LED control and one for motor control. Each section includes a button, which, when clicked, triggers a JavaScript function that sends a request back to the Pico's web server to perform an action. The toggleLED() function sends a request to the /toggle_led URL, and the rotateMotor(direction) function sends a request to the /rotate_motor URL with the direction specified as either "right" or "left."
+
+The toggleLED() function is used to toggle the state of the onboard LED connected to GPIO 16. When the button is clicked, the server receives a request to toggle the LED. The Pico's response updates the state of the LED by setting the GPIO pin high or low, thus turning the LED on or off. Similarly, the motor control section includes two buttons: one for rotating the motor clockwise (right) and another for rotating it counterclockwise (left). These buttons send a request to the server, and the motor's direction is controlled by the state of GPIO 14 and GPIO 15, which are connected to the L298N motor driver. When the "Motor Right" button is clicked, GPIO 14 is set to HIGH and GPIO 15 is set to LOW, causing the motor to rotate forward. Conversely, clicking the "Motor Left" button sets GPIO 14 to LOW and GPIO 15 to HIGH, causing the motor to rotate in the opposite direction.
+
+The server responds to each request by sending the HTML page back to the client, ensuring that the web page is always up-to-date with the current state of the LED and motor. This is done by checking the incoming request URL and performing the corresponding action. After each action (LED toggle or motor rotation), the server sends the updated HTML page to the browser, allowing the user to interact with the hardware in real time.
+
+In conclusion, this project demonstrates how to integrate basic web control into embedded systems using a Raspberry Pi Pico. By leveraging MicroPython and simple socket programming, the program allows users to control physical components, such as LEDs and motors, through a web browser. This setup provides a solid foundation for more complex IoT applications where devices can be remotely controlled over a network. The modularity of the code also allows easy expansion, such as adding more controls, adjusting motor speed with PWM, or integrating sensors for feedback in future projects.
+
+import network
+import socket
+from machine import Pin
+import time
+
+# Set up the LED and motor control pins
+led = Pin(16, Pin.OUT)  # LED on GPIO 16
+motor_in1 = Pin(14, Pin.OUT)  # Motor control pin 1
+motor_in2 = Pin(15, Pin.OUT)  # Motor control pin 2
+
+# Connect to WiFi (adjust with your network details)
+wifi_ssid = 'your_wifi_ssid'
+wifi_password = 'your_wifi_password'
+
+# Connect to Wi-Fi
+wifi = network.WLAN(network.STA_IF)
+wifi.active(True)
+wifi.connect(wifi_ssid, wifi_password)
+
+# Wait for connection
+while not wifi.isconnected():
+    time.sleep(1)
+
+print("Connected to WiFi")
+print("IP Address:", wifi.ifconfig()[0])
+
+# Web page HTML
+html = """<!DOCTYPE html>
+<html>
+<head>
+    <title>Control LED and Motor</title>
+</head>
+<body>
+    <h1>Raspberry Pi Pico Web Control</h1>
+
+    <h2>LED Control</h2>
+    <button onclick="toggleLED()">Toggle LED</button>
+
+    <h2>Motor Control</h2>
+    <button onclick="rotateMotor('right')">Motor Right</button>
+    <button onclick="rotateMotor('left')">Motor Left</button>
+
+    <script>
+        function toggleLED() {
+            fetch('/toggle_led');
+        }
+
+        function rotateMotor(direction) {
+            fetch('/rotate_motor?direction=' + direction);
+        }
+    </script>
+</body>
+</html>"""
+
+# Create a socket and listen for incoming HTTP requests
+addr = socket.getaddrinfo('0.0.0.0', 80)[0][-1]
+s = socket.socket()
+s.bind(addr)
+s.listen(1)
+
+print('Listening on', addr)
+
+# Web server loop
+while True:
+    cl, addr = s.accept()
+    print('Client connected from', addr)
+    request = cl.recv(1024)
+    request = str(request)
+
+    # Control LED
+    if '/toggle_led' in request:
+        led.value(not led.value())  # Toggle LED
+
+    # Control motor
+    if '/rotate_motor' in request:
+        direction = request.split('direction=')[1].split(' ')[0]
+        if direction == 'right':
+            motor_in1.value(1)
+            motor_in2.value(0)  # Rotate right
+        elif direction == 'left':
+            motor_in1.value(0)
+            motor_in2.value(1)  # Rotate left
+
+    # Send the web page
+    cl.send('HTTP/1.1 200 OK\r\n')
+    cl.send('Content-Type: text/html\r\n')
+    cl.send('\r\n')
+    cl.send(html)
+
+    cl.close()
